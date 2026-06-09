@@ -7,7 +7,8 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
         body {
-            background: #111319;
+            background: linear-gradient(rgba(17, 19, 25, 0.85), rgba(17, 19, 25, 0.85)), url('https://unsplash.com') no-repeat center center fixed;
+            background-size: cover;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -16,7 +17,7 @@
             padding: 20px;
         }
         .container { display: flex; gap: 20px; max-width: 1200px; width: 100%; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
-        .card { background: #1c1e27; border-radius: 14px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.03); }
+        .card { background: rgba(28, 30, 39, 0.95); border-radius: 14px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.03); backdrop-filter: blur(5px); }
         .side-card { flex: 1; min-width: 290px; max-width: 350px; display: flex; flex-direction: column; }
         .main-card { flex: 2; min-width: 320px; max-width: 460px; text-align: center; }
         
@@ -61,7 +62,7 @@
 <body>
 
 <div class="container">
-    <!-- HELP ACCORDION (6 SORULU TAM VERSİYON) -->
+    <!-- HELP ACCORDION -->
     <div class="card side-card">
         <div class="card-header-area">
             <div class="help-icon-box">?</div>
@@ -72,7 +73,6 @@
         </div>
         
         <div class="help-list">
-            <!-- Soru 1 -->
             <div class="accordion-item active">
                 <div class="accordion-header">
                     <span id="q1">How do I use this?</span>
@@ -82,7 +82,6 @@
                     <div class="accordion-content-inner" id="a1">Select a reward. For Roblox rewards, enter your Roblox username. For Nitro rewards, no username is needed. Then complete one quest.</div>
                 </div>
             </div>
-            <!-- Soru 2 -->
             <div class="accordion-item">
                 <div class="accordion-header">
                     <span id="q2">How do I receive my prize?</span>
@@ -92,7 +91,6 @@
                     <div class="accordion-content-inner" id="a2">Roblox rewards are delivered via Roblox giftcard. Nitro rewards are delivered via Discord Nitro gift.</div>
                 </div>
             </div>
-            <!-- Soru 3 -->
             <div class="accordion-item">
                 <div class="accordion-header">
                     <span id="q3">What if I can't complete a quest?</span>
@@ -102,7 +100,6 @@
                     <div class="accordion-content-inner" id="a3">If you're having trouble with a quest, please disable your AdBlocker ⛔ if you have one as they block our quest links. If that doesn't help, try another quest (you only need to complete 1). If none work, visit the site on another device 📱💻 (phone/tablet/PC/laptop) to get different quests, or try again tomorrow.</div>
                 </div>
             </div>
-            <!-- Soru 4 (YENİ EKLEDİĞİN) -->
             <div class="accordion-item">
                 <div class="accordion-header">
                     <span id="q4">Why do I have to do a quest?</span>
@@ -112,7 +109,6 @@
                     <div class="accordion-content-inner" id="a4">Our site is funded by our partners - by completing their quests, you help us afford to give free rewards to everyone!</div>
                 </div>
             </div>
-            <!-- Soru 5 (YENİ EKLEDİĞİN) -->
             <div class="accordion-item">
                 <div class="accordion-header">
                     <span id="q5">Can I claim more than once?</span>
@@ -122,7 +118,6 @@
                     <div class="accordion-content-inner" id="a5">Yes, you can claim as many times as you want! However, keep in mind that a quest might not work again if you've done it already.</div>
                 </div>
             </div>
-            <!-- Soru 6 (YENİ EKLEDİĞİN + NITRO ENTEGRELİ) -->
             <div class="accordion-item">
                 <div class="accordion-header">
                     <span id="q6">Is this an official website?</span>
@@ -141,6 +136,7 @@
         <p class="subtitle" id="mainSub">Which reward would you like to transfer to your account today?</p>
         
         <div class="reward-grid">
+            <!-- ROBUX BUTONU -->
             <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item robux-btn">
                 <div class="reward-icon-container">
                     <svg viewBox="0 0 100 100" width="50" height="50">
@@ -152,6 +148,6 @@
                 <div class="reward-desc" id="robuxDesc">Instant Delivery</div>
             </a>
             
+            <!-- NITRO BUTONU -->
             <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item">
                 <div class="reward-icon-container">
-                    <svg viewBox="0 0 100 60" width="65" height="45">
