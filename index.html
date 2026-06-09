@@ -42,24 +42,25 @@
         
         .chat-title-text h3 { font-size: 16px; font-weight: bold; color: #fff; }
         .chat-title-text p { font-size: 11px; color: #8e9297; margin-top: 1px; }
-        
-        /* Yeşil nokta ve sayı alanı */
         .status { font-size: 12px; color: #23a55a; font-weight: bold; }
         
-        /* KESİNTİSİZ VE BOŞLUKSUZ SAF CSS SOHBET PENCERESİ */
-        .chat-container-window { height: 260px; overflow: hidden; position: relative; border-radius: 8px; background: rgba(0,0,0,0.1); padding: 10px; }
-        .chat-box-stream { display: flex; flex-direction: column; gap: 14px; width: 100%; animation: scrollStream 42s linear infinite; }
+        /* Dinamik Yüklenen Mesaj Alanı */
+        .chat-box { height: 260px; overflow-y: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 13px; text-align: left; padding: 5px; border-radius: 8px; background: rgba(0,0,0,0.1); }
         
-        .chat-msg { line-height: 1.4; font-size: 13px; text-align: left; white-space: nowrap; }
+        /* Yeni mesajların aşağıdan yukarıya pürüzsüz giriş efekti */
+        .chat-msg { line-height: 1.4; animation: messageSlideIn 0.3s ease-out forwards; opacity: 0; }
+        
+        /* İsim Renkleri */
         .username-green { font-weight: bold; color: #00b06c; text-decoration: underline; }
         .username-lightgreen { font-weight: bold; color: #52b788; text-decoration: underline; }
+        
         .claimed-robux { color: #00b06c; font-weight: 500; }
         .claimed-nitro { color: #ff73fa; font-weight: 500; }
         .user-text { color: #dcddde; margin-left: 3px; }
         
-        @keyframes scrollStream {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
+        @keyframes messageSlideIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         /* Alt Bölüm Mesaj Kutusu ve Send Butonu */
@@ -103,7 +104,7 @@
                         <polygon points="56,41 64,45.5 64,54.5 56,59 48,54.5 48,45.5" fill="#ff73fa"/>
                     </svg>
                 </div>
-                <div class="reward-title">1 Monthly Nitro</div>
+                <div class="reward-title">Monthly Nitro</div>
                 <div class="reward-desc">Nitro Boost</div>
             </a>
         </div>
@@ -122,23 +123,44 @@
                     <p>Talk to other Players</p>
                 </div>
             </div>
-            <!-- YENİ: Dinamik sayı için id atandı -->
-            <div class="status">● <span id="dynamicCount">180</span> active</div>
+            <div class="status">● <span id="activeCount">180</span> active</div>
         </div>
         
-        <div class="chat-container-window">
-            <div class="chat-box-stream">
-                <div class="chat-msg"><span class="username-green">StarByte</span> <span class="claimed-robux">just claimed Robux!</span></div>
-                <div class="chat-msg"><span class="username-lightgreen">TigerNova_7:</span> <span class="user-text">Yea finally legit one!</span></div>
-                <div class="chat-msg"><span class="username-green">RogueStar</span> <span class="claimed-nitro">just claimed Nitro!</span></div>
-                <div class="chat-msg"><span class="username-lightgreen">NitroBooster_x:</span> <span class="user-text">omg free nitro is real 🚀</span></div>
-                <div class="chat-msg"><span class="username-green">BlazeEaglePro8</span> <span class="claimed-robux">just claimed Robux!</span></div>
-                
-                <div class="chat-msg"><span class="username-green">NeoFalcon_3</span> <span class="claimed-robux">just claimed Robux!</span></div>
-                <div class="chat-msg"><span class="username-lightgreen">GamerElite_X:</span> <span class="user-text">wow so fast, it works!</span></div>
-                <div class="chat-msg"><span class="username-green">Ghost_Panda2</span> <span class="claimed-nitro">just claimed Nitro!</span></div>
-                <div class="chat-msg"><span class="username-lightgreen">WumpusFan:</span> <span class="user-text">finally got my booster badge layout!!</span></div>
-                <div class="chat-msg"><span class="username-green">Noob_NovaDev3</span> <span class="claimed-robux">just claimed Robux!</span></div>
-                
-                <div class="chat-msg"><span class="username-green">VortexRider</span> <span class="claimed-robux">just claimed Robux!</span></div>
-                <div class="chat-msg"><span class="username-lightgreen">CyberLoot_TR:</span> <span class="user-text">omg thanks for free robux</span></div>
+        <!-- Dinamik Akış Kutusu -->
+        <div class="chat-box" id="chatContainer">
+            <!-- JavaScript alt kısmı dolduracaktır -->
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" placeholder="Claim any prize to chat..." disabled="disabled" />
+            <button disabled="disabled">Send</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Vercel ve tarayıcı kısıtlamalarını tamamen deaktif eden kapalı fonksiyon motoru
+    (function() {
+        var names = ['StarByte', 'TigerNova_7', 'RogueStar', 'BlazeEaglePro8', 'NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'ShadowCreeper', 'BloxMaster', 'GamerElite_X', 'CyberLoot_TR', 'Ultra_EagleX3', 'SolarSable2024', 'Crimson_V', 'Matrix_X', 'VoidGamer', 'Alpha_TR', 'NitroKing', 'Julia_UwU', 'WumpusFan', 'LootHub_TR'];
+        var comments = ['Yea finally legit one!', 'wow so fast, it works!', 'omg thanks for free robux', 'legit website, fast delivery', 'worked for me instantly', 'ty sm for reward 💖', 'omg free nitro is real 🚀', 'finally got my booster badge layout!!', 'this site saved my budget ngl', 'the nitro link is perfectly working guys'];
+        var step = 0;
+
+        function getName() {
+            return names[Math.floor(Math.random() * names.length)];
+        }
+        function getComment() {
+            return comments[Math.floor(Math.random() * comments.length)];
+        }
+
+        function createNewMessage() {
+            var container = document.getElementById('chatContainer');
+            if(!container) return;
+
+            var msg = document.createElement('div');
+            msg.className = 'chat-msg';
+
+            // 4 Adımlı kusursuz şablonu sürekli farklı isimlerle sırayla basar
+            if (step === 0) {
+                msg.innerHTML = '<span class="username-green">' + getName() + '</span> <span class="claimed-robux">just claimed Robux!</span>';
+                step = 1;
+            } else if (step === 1) {
