@@ -44,11 +44,11 @@
         .chat-title-text p { font-size: 11px; color: #8e9297; margin-top: 1px; }
         .status { font-size: 12px; color: #23a55a; font-weight: bold; }
         
-        /* Dinamik Yüklenen Mesaj Alanı */
+        /* İçerik Alanı */
         .chat-box { height: 260px; overflow-y: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 13px; text-align: left; padding: 5px; border-radius: 8px; background: rgba(0,0,0,0.1); }
         
-        /* Yeni mesajların aşağıdan yukarıya pürüzsüz giriş efekti */
-        .chat-msg { line-height: 1.4; animation: messageSlideIn 0.3s ease-out forwards; opacity: 0; }
+        /* Aşağıdan düşen pürüzsüz animasyon efekti */
+        .chat-msg { line-height: 1.4; animation: msgIn 0.25s ease-out forwards; }
         
         /* İsim Renkleri */
         .username-green { font-weight: bold; color: #00b06c; text-decoration: underline; }
@@ -58,8 +58,8 @@
         .claimed-nitro { color: #ff73fa; font-weight: 500; }
         .user-text { color: #dcddde; margin-left: 3px; }
         
-        @keyframes messageSlideIn {
-            from { opacity: 0; transform: translateY(15px); }
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
@@ -126,9 +126,12 @@
             <div class="status">● <span id="activeCount">180</span> active</div>
         </div>
         
-        <!-- Dinamik Akış Kutusu -->
+        <!-- YENİ: İlk açılışta boş kalmaması için mesajlar HTML'e sabitlendi -->
         <div class="chat-box" id="chatContainer">
-            <!-- JavaScript alt kısmı dolduracaktır -->
+            <div class="chat-msg"><span class="username-green">StarByte</span> <span class="claimed-robux">just claimed Robux!</span></div>
+            <div class="chat-msg"><span class="username-lightgreen">TigerNova_7:</span> <span class="user-text">Yea finally legit one!</span></div>
+            <div class="chat-msg"><span class="username-green">RogueStar</span> <span class="claimed-nitro">just claimed Nitro!</span></div>
+            <div class="chat-msg"><span class="username-lightgreen">NitroBooster_x:</span> <span class="user-text">omg free nitro is real 🚀</span></div>
         </div>
 
         <div class="chat-input-area">
@@ -138,29 +141,19 @@
     </div>
 </div>
 
+<!-- YENİ: Tetikleyicilerden arındırılmış, doğrudan ateşlenen en garanti script motoru -->
 <script type="text/javascript">
-    // Vercel ve tarayıcı kısıtlamalarını tamamen deaktif eden kapalı fonksiyon motoru
-    (function() {
-        var names = ['StarByte', 'TigerNova_7', 'RogueStar', 'BlazeEaglePro8', 'NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'ShadowCreeper', 'BloxMaster', 'GamerElite_X', 'CyberLoot_TR', 'Ultra_EagleX3', 'SolarSable2024', 'Crimson_V', 'Matrix_X', 'VoidGamer', 'Alpha_TR', 'NitroKing', 'Julia_UwU', 'WumpusFan', 'LootHub_TR'];
-        var comments = ['Yea finally legit one!', 'wow so fast, it works!', 'omg thanks for free robux', 'legit website, fast delivery', 'worked for me instantly', 'ty sm for reward 💖', 'omg free nitro is real 🚀', 'finally got my booster badge layout!!', 'this site saved my budget ngl', 'the nitro link is perfectly working guys'];
-        var step = 0;
+    var names = ['StarByte', 'TigerNova_7', 'RogueStar', 'BlazeEaglePro8', 'NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'ShadowCreeper', 'BloxMaster', 'GamerElite_X', 'CyberLoot_TR', 'Ultra_EagleX3', 'SolarSable2024', 'Crimson_V', 'Matrix_X', 'VoidGamer', 'Alpha_TR', 'NitroKing', 'Julia_UwU', 'WumpusFan', 'LootHub_TR'];
+    var comments = ['Yea finally legit one!', 'wow so fast, it works!', 'omg thanks for free robux', 'legit website, fast delivery', 'worked for me instantly', 'ty sm for reward 💖', 'omg free nitro is real 🚀', 'finally got my booster badge layout!!', 'this site saved my budget ngl', 'the nitro link is perfectly working guys'];
+    var step = 0;
 
-        function getName() {
-            return names[Math.floor(Math.random() * names.length)];
-        }
-        function getComment() {
-            return comments[Math.floor(Math.random() * comments.length)];
-        }
+    function getName() { return names[Math.floor(Math.random() * names.length)]; }
+    function getComment() { return comments[Math.floor(Math.random() * comments.length)]; }
 
-        function createNewMessage() {
-            var container = document.getElementById('chatContainer');
-            if(!container) return;
+    function createNewMessage() {
+        var container = document.getElementById('chatContainer');
+        if(!container) return;
 
-            var msg = document.createElement('div');
-            msg.className = 'chat-msg';
+        var msg = document.createElement('div');
+        msg.className = 'chat-msg';
 
-            // 4 Adımlı kusursuz şablonu sürekli farklı isimlerle sırayla basar
-            if (step === 0) {
-                msg.innerHTML = '<span class="username-green">' + getName() + '</span> <span class="claimed-robux">just claimed Robux!</span>';
-                step = 1;
-            } else if (step === 1) {
