@@ -17,23 +17,34 @@
         }
         .container { display: flex; gap: 20px; max-width: 900px; width: 100%; flex-wrap: wrap; justify-content: center; }
         .card { background: #1c1e27; border-radius: 14px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.03); }
-        .side-card { flex: 1; min-width: 290px; max-width: 320px; }
+        .side-card { flex: 1; min-width: 290px; max-width: 320px; display: flex; flex-direction: column; }
         .main-card { flex: 2; min-width: 320px; max-width: 460px; text-align: center; }
         h2 { font-size: 20px; margin-bottom: 15px; font-weight: 700; }
         .subtitle { color: #8e9297; font-size: 13px; margin-bottom: 25px; }
         .reward-grid { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
         .reward-item { background: #252836; border-radius: 10px; padding: 25px; flex: 1; cursor: pointer; border: 2px solid transparent; text-decoration: none; color: #fff; display: block; transition: transform 0.2s, border-color 0.2s; }
         .reward-item:hover { transform: translateY(-3px); border-color: #5865F2; }
-        .reward-icon { font-size: 45px; margin-bottom: 12px; display: block; text-align: center; }
+        
+        /* Orijinal Vektör Logolar */
+        .reward-icon-container { width: 55px; height: 55px; margin: 0 auto 12px auto; display: flex; align-items: center; justify-content: center; }
+        
         .reward-title { font-weight: bold; font-size: 16px; margin-bottom: 5px; }
         .reward-desc { font-size: 11px; color: #b9bbbe; }
+        
+        /* Canlı Sohbet ve Yeni Input Yapısı */
         .chat-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2f3241; padding-bottom: 10px; margin-bottom: 15px; }
         .status { font-size: 12px; color: #23a55a; font-weight: bold; }
-        .chat-box { height: 230px; overflow: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 12px; text-align: left; }
+        .chat-box { height: 210px; overflow: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 12px; text-align: left; flex-grow: 1; }
         .chat-msg { border-bottom: 1px solid rgba(255,255,255,0.02); padding-bottom: 6px; }
         .username { font-weight: bold; color: #00b0ff; }
         .user-nitro { color: #5865F2; }
         .msg-text { color: #dcddde; margin-left: 5px; }
+        
+        /* Sahte Yazma Alanı */
+        .chat-input-area { display: flex; gap: 8px; margin-top: 15px; border-top: 1px solid #2f3241; padding-top: 15px; }
+        .chat-input-area input { flex: 1; background: #252836; border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 8px 12px; color: #fff; font-size: 12px; cursor: not-allowed; }
+        .chat-input-area button { background: #5865F2; border: none; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: not-allowed; opacity: 0.6; }
+        
         @media(max-width: 768px) { .container { flex-direction: column; align-items: center; } .side-card { max-width: 100%; width: 100%; } }
     </style>
 </head>
@@ -46,14 +57,25 @@
         <p class="subtitle" id="mainSub">Which reward would you like to transfer to your account today?</p>
         
         <div class="reward-grid">
-            <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item">
-                <span class="reward-icon">💎</span>
+            <!-- ROBUX BUTONU (ORİJİNAL LOGO) -->
+            <a href="BURAYA_ROBUX_OGADS_LINKINI_YAPISTIR" class="reward-item">
+                <div class="reward-icon-container">
+                    <svg viewBox="0 0 100 100" width="50" height="50">
+                        <rect x="25" y="25" width="50" height="50" transform="rotate(15 50 50)" fill="#00b0ff" />
+                        <rect x="41" y="41" width="18" height="18" transform="rotate(15 50 50)" fill="#252836" />
+                    </svg>
+                </div>
                 <div class="reward-title">800 Robux</div>
                 <div class="reward-desc" id="robuxDesc">Instant Delivery</div>
             </a>
             
-            <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item">
-                <span class="reward-icon">🔥</span>
+            <!-- NITRO BUTONU (ORİJİNAL LOGO) -->
+            <a href="BURAYA_NITRO_OGADS_LINKINI_YAPISTIR" class="reward-item">
+                <div class="reward-icon-container">
+                    <svg viewBox="0 0 127.14 96.36" width="52" height="42">
+                        <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.95,54.65,1,77.53a105.73,105.73,0,0,0,32,16.29,79,79,0,0,0,6.73-11A68.6,68.6,0,0,1,28.8,77.53c.95-.7,1.92-1.44,2.84-2.2a74.14,74.14,0,0,0,71,0c.92.76,1.89,1.5,2.84,2.2a68.88,68.88,0,0,1-10.94,5.27,78.73,78.73,0,0,0,6.73,11,105.41,105.41,0,0,0,32-16.29C129.7,48.56,123.32,25.9,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z" fill="#5865F2"/>
+                    </svg>
+                </div>
                 <div class="reward-title">1 Month Nitro</div>
                 <div class="reward-desc" id="nitroDesc">Premium Membership</div>
             </a>
@@ -67,34 +89,39 @@
             <h2 id="chatTitle">Live Chat</h2>
             <div class="status">● <span id="activeCount">412</span> <span id="activeText">Active</span></div>
         </div>
+        
         <div class="chat-box" id="chatBox">
-            <!-- İlk mesajlar doğrudan yüklensin -->
             <div class="chat-msg"><span class="username">Gamer_X:</span><span class="msg-text">just claimed 800 Robux! Thanks.</span></div>
             <div class="chat-msg"><span class="username user-nitro">Shadow99:</span><span class="msg-text">Finally a working Nitro, you are the best!</span></div>
+        </div>
+
+        <!-- YENİ: SAHTE MESAJ YAZMA ALANI -->
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Send a message..." disabled="disabled" />
+            <button id="chatBtn" disabled="disabled">Send</button>
         </div>
     </div>
 </div>
 
 <script>
-    // Global Diller (Vercel Korumasız)
     var trans = {
-        en: { title: "Choose Your Reward", sub: "Which reward would you like to claim today?", rx: "Instant Delivery", nt: "Premium Membership", ft: "* Limit 1 per account daily.", ct: "Live Chat", ac: "Active", rMsg: "just claimed 800 Robux! Thanks.", nMsg: "Finally a working Nitro, you are the best!" },
-        tr: { title: "Ödülünü Seç", sub: "Bugün hangi hediyeyi hesabına aktarmak istersin?", rx: "Anında Teslimat", nt: "Premium Üyelik", ft: "* Günlük stok limiti hesap başına 1 adettir.", ct: "Canlı Sohbet", ac: "Aktif", rMsg: "800 Robux aldı! Teşekkürler.", nMsg: "Sonunda çalışan bir Nitro buldum, adamsınız!" }
+        en: { title: "Choose Your Reward", sub: "Which reward would you like to claim today?", rx: "Instant Delivery", nt: "Premium Membership", ft: "* Limit 1 per account daily.", ct: "Live Chat", ac: "Active", rMsg: "just claimed 800 Robux! Thanks.", nMsg: "Finally a working Nitro, you are the best!", inp: "Verification required to chat..." },
+        tr: { title: "Ödülünü Seç", sub: "Bugün hangi hediyeyi hesabına aktarmak istersin?", rx: "Anında Teslimat", nt: "Premium Üyelik", ft: "* Günlük stok limiti hesap başına 1 adettir.", ct: "Canlı Sohbet", ac: "Aktif", rMsg: "800 Robux aldı! Teşekkürler.", nMsg: "Sonunda çalışan bir Nitro buldum, adamsınız!", inp: "Sohbet için doğrulama gerekli..." }
     };
 
     var uLang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase(); 
-    if (uLang !== 'tr') uLang = 'en'; // Türkçe harici her yere İngilizce göster
+    if (uLang !== 'tr') uLang = 'en';
     var current = trans[uLang];
 
     document.getElementById('mainTitle').innerText = current.title;
-    document.getElementById('mainSub').innerText = current.subtitle || current.sub;
+    document.getElementById('mainSub').innerText = current.sub;
     document.getElementById('robuxDesc').innerText = current.rx;
     document.getElementById('nitroDesc').innerText = current.nt;
     document.getElementById('footerText').innerText = current.ft;
     document.getElementById('chatTitle').innerText = current.ct;
     document.getElementById('activeText').innerText = current.ac;
+    document.getElementById('chatInput').placeholder = current.inp;
 
-    // Engellenemeyen Basit Sohbet ve Canlı Sayı Akışı
     var userNames = ['Julia_UwU', 'NitroKing', 'Robloxian', 'Alpha_TR', 'Alex2026', 'Meltem_07', 'Leo_Gamer', 'Hyper_X', 'Vortex', 'Slayer'];
     var cBox = document.getElementById('chatBox');
 
@@ -112,9 +139,9 @@
             
             if (cBox.children.length > 5) { cBox.removeChild(cBox.children[0]); }
         }
-        // Aktif kişi sayısını sürekli dinamik olarak değiştirir
+        // Aktif kişi sayısını dalgalandırır
         var countEl = document.getElementById('activeCount');
-        if(countEl) { countEl.innerText = Math.floor(Math.random() * (440 - 390) + 390); }
+        if(countEl) { countEl.innerText = Math.floor(Math.random() * (450 - 390) + 390); }
     }, 3000);
 </script>
 </body>
