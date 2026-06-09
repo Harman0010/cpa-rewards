@@ -42,8 +42,9 @@
         
         .chat-title-text h3 { font-size: 16px; font-weight: bold; color: #fff; }
         .chat-title-text p { font-size: 11px; color: #8e9297; margin-top: 1px; }
-        .status { font-size: 12px; color: #23a55a; font-weight: bold; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+        
+        /* Yeşil nokta ve sayı alanı */
+        .status { font-size: 12px; color: #23a55a; font-weight: bold; }
         
         /* KESİNTİSİZ VE BOŞLUKSUZ SAF CSS SOHBET PENCERESİ */
         .chat-container-window { height: 260px; overflow: hidden; position: relative; border-radius: 8px; background: rgba(0,0,0,0.1); padding: 10px; }
@@ -102,8 +103,8 @@
                         <polygon points="56,41 64,45.5 64,54.5 56,59 48,54.5 48,45.5" fill="#ff73fa"/>
                     </svg>
                 </div>
-                <div class="reward-title">1 Month Nitro</div>
-                <div class="reward-desc">Premium Boost</div>
+                <div class="reward-title">1 Monthly Nitro</div>
+                <div class="reward-desc">Nitro Boost</div>
             </a>
         </div>
         <p style="font-size: 11px; color:#72767d;">* Daily stock limit is 1 per account.</p>
@@ -121,12 +122,12 @@
                     <p>Talk to other Players</p>
                 </div>
             </div>
-            <div class="status">● 180 active</div>
+            <!-- YENİ: Dinamik sayı için id atandı -->
+            <div class="status">● <span id="dynamicCount">180</span> active</div>
         </div>
         
         <div class="chat-container-window">
             <div class="chat-box-stream">
-                <!-- GRUP 1: ROBUX VE NITRO HEYECANI KARIŞIK SOHBET AKIŞI -->
                 <div class="chat-msg"><span class="username-green">StarByte</span> <span class="claimed-robux">just claimed Robux!</span></div>
                 <div class="chat-msg"><span class="username-lightgreen">TigerNova_7:</span> <span class="user-text">Yea finally legit one!</span></div>
                 <div class="chat-msg"><span class="username-green">RogueStar</span> <span class="claimed-nitro">just claimed Nitro!</span></div>
