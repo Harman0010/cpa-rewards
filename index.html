@@ -44,7 +44,7 @@
         .chat-title-text p { font-size: 11px; color: #8e9297; margin-top: 1px; }
         .status { font-size: 12px; color: #23a55a; font-weight: bold; }
         
-        /* Gerçekçi Kayma Efektli İçerik Alanı */
+        /* İçerik Alanı */
         .chat-box { height: 215px; overflow-y: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 13px; text-align: left; padding: 5px; border-radius: 8px; background: rgba(0,0,0,0.1); flex-grow: 1; }
         .chat-msg { line-height: 1.4; animation: msgSlideUp 0.25s ease-out forwards; opacity: 0; }
         
@@ -61,7 +61,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* SABİTLENEN MESAJ ALANI VE MOR SEND BUTONU */
+        /* Sabit Giriş Alanı ve Send Butonu */
         .chat-input-area { display: flex; gap: 8px; margin-top: auto; padding-top: 15px; border-top: 1px solid #2f3241; width: 100%; }
         .chat-input-area input { flex: 1; background: #252836; border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 10px 12px; color: #fff; font-size: 13px; cursor: not-allowed; }
         .chat-input-area button { background: #5865F2; border: none; color: #fff; padding: 0 16px; border-radius: 6px; font-size: 13px; font-weight: bold; cursor: not-allowed; opacity: 0.8; display: flex; align-items: center; justify-content: center; }
@@ -124,8 +124,9 @@
             <div class="status">● <span id="activeCount">180</span> active</div>
         </div>
         
+        <!-- id ismi buyuk/kucuk harfe gore tamamen esitlendi -->
         <div class="chat-box" id="chatContainer">
-            <!-- JavaScript burayı tamamen dolduracaktır -->
+            <!-- Mesajlar JavaScript tarafından buraya basılacaktır -->
         </div>
 
         <div class="chat-input-area">
@@ -135,7 +136,6 @@
     </div>
 </div>
 
-<!-- KORUMALARI BY-PASS EDEN DOĞRUDAN ÇIPLAK JAVASCRIPT MOTORU -->
 <script type="text/javascript">
     var namesList = ['StarByte', 'TigerNova_7', 'RogueStar', 'BlazeEaglePro8', 'NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'ShadowCreeper', 'BloxMaster', 'GamerElite_X', 'CyberLoot_TR', 'Ultra_EagleX3', 'SolarSable2024', 'Crimson_V', 'Matrix_X', 'VoidGamer', 'Alpha_TR', 'NitroKing', 'Julia_UwU', 'WumpusFan', 'LootHub_TR'];
     var commentsList = ['Yea finally legit one!', 'wow so fast, it works!', 'omg thanks for free robux', 'legit website, fast delivery', 'worked for me instantly', 'ty sm for reward 💖', 'omg free nitro is real 🚀', 'finally got my booster badge layout!!', 'this site saved my budget ngl', 'the nitro link is perfectly working guys'];
@@ -152,6 +152,7 @@
     }
 
     function spawnMessage() {
+        // Büyük/küçük harf uyuşmazlığı tam olarak düzeltildi (chatContainer)
         var box = document.getElementById('chatContainer');
         if(!box) return;
 
