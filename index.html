@@ -46,8 +46,6 @@
         
         /* İçerik Alanı */
         .chat-box { height: 260px; overflow-y: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 13px; text-align: left; padding: 5px; border-radius: 8px; background: rgba(0,0,0,0.1); }
-        
-        /* Aşağıdan düşen pürüzsüz animasyon efekti */
         .chat-msg { line-height: 1.4; animation: msgIn 0.25s ease-out forwards; }
         
         /* İsim Renkleri */
@@ -126,12 +124,8 @@
             <div class="status">● <span id="activeCount">180</span> active</div>
         </div>
         
-        <!-- YENİ: İlk açılışta boş kalmaması için mesajlar HTML'e sabitlendi -->
         <div class="chat-box" id="chatContainer">
-            <div class="chat-msg"><span class="username-green">StarByte</span> <span class="claimed-robux">just claimed Robux!</span></div>
-            <div class="chat-msg"><span class="username-lightgreen">TigerNova_7:</span> <span class="user-text">Yea finally legit one!</span></div>
-            <div class="chat-msg"><span class="username-green">RogueStar</span> <span class="claimed-nitro">just claimed Nitro!</span></div>
-            <div class="chat-msg"><span class="username-lightgreen">NitroBooster_x:</span> <span class="user-text">omg free nitro is real 🚀</span></div>
+            <!-- Mesajlar JavaScript ile benzersiz isimlerle basılacaktır -->
         </div>
 
         <div class="chat-input-area">
@@ -141,19 +135,36 @@
     </div>
 </div>
 
-<!-- YENİ: Tetikleyicilerden arındırılmış, doğrudan ateşlenen en garanti script motoru -->
 <script type="text/javascript">
-    var names = ['StarByte', 'TigerNova_7', 'RogueStar', 'BlazeEaglePro8', 'NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'ShadowCreeper', 'BloxMaster', 'GamerElite_X', 'CyberLoot_TR', 'Ultra_EagleX3', 'SolarSable2024', 'Crimson_V', 'Matrix_X', 'VoidGamer', 'Alpha_TR', 'NitroKing', 'Julia_UwU', 'WumpusFan', 'LootHub_TR'];
-    var comments = ['Yea finally legit one!', 'wow so fast, it works!', 'omg thanks for free robux', 'legit website, fast delivery', 'worked for me instantly', 'ty sm for reward 💖', 'omg free nitro is real 🚀', 'finally got my booster badge layout!!', 'this site saved my budget ngl', 'the nitro link is perfectly working guys'];
-    var step = 0;
+    (function() {
+        var namesPool = ['StarByte', 'TigerNova_7', 'RogueStar', 'BlazeEaglePro8', 'NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'ShadowCreeper', 'BloxMaster', 'GamerElite_X', 'CyberLoot_TR', 'Ultra_EagleX3', 'SolarSable2024', 'Crimson_V', 'Matrix_X', 'VoidGamer', 'Alpha_TR', 'NitroKing', 'Julia_UwU', 'WumpusFan', 'LootHub_TR'];
+        var commentsPool = ['Yea finally legit one!', 'wow so fast, it works!', 'omg thanks for free robux', 'legit website, fast delivery', 'worked for me instantly', 'ty sm for reward 💖', 'omg free nitro is real 🚀', 'finally got my booster badge layout!!', 'this site saved my budget ngl', 'the nitro link is perfectly working guys'];
+        
+        // Ekranda aktif olan isimleri tutan hafıza dizisi
+        var activeNamesOnScreen = [];
+        var step = 0;
 
-    function getName() { return names[Math.floor(Math.random() * names.length)]; }
-    function getComment() { return comments[Math.floor(Math.random() * comments.length)]; }
+        // Ekranda halihazırda var olmayan benzersiz bir isim seçen akıllı filtre fonksiyonu
+        function getUniqueName() {
+            var filteredNames = namesPool.filter(function(name) {
+                return activeNamesOnScreen.indexOf(name) === -1;
+            });
+            // Eğer tüm isimler kullanıldıysa havuzu sıfırla
+            if (filteredNames.length === 0) {
+                activeNamesOnScreen = [];
+                filteredNames = namesPool;
+            }
+            var chosenName = filteredNames[Math.floor(Math.random() * filteredNames.length)];
+            activeNamesOnScreen.push(chosenName);
+            return chosenName;
+        }
 
-    function createNewMessage() {
-        var container = document.getElementById('chatContainer');
-        if(!container) return;
+        function getComment() { 
+            return commentsPool[Math.floor(Math.random() * commentsPool.length)]; 
+        }
 
-        var msg = document.createElement('div');
-        msg.className = 'chat-msg';
+        function createNewMessage() {
+            var container = document.getElementById('chatContainer');
+            if(!container) return;
 
+            var msg = document.createElement('div');
