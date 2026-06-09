@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Claim Reward</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
@@ -44,14 +44,12 @@
         .chat-title-text p { font-size: 11px; color: #8e9297; margin-top: 1px; }
         .status { font-size: 12px; color: #23a55a; font-weight: bold; }
         
-        /* İçerik Alanı (id hatası düzeltildi) */
+        /* İçerik Alanı */
         .chat-box { height: 260px; overflow-y: hidden; display: flex; flex-direction: column; gap: 10px; font-size: 13px; text-align: left; padding: 5px; border-radius: 8px; background: rgba(0,0,0,0.1); }
         .chat-msg { line-height: 1.4; padding-bottom: 2px; animation: chatFadeIn 0.2s ease-out forwards; }
         
         /* İsim Renkleri */
         .username-green { font-weight: bold; color: #00b06c; text-decoration: underline; }
-        .username-orange { font-weight: bold; color: #f0a23e; text-decoration: underline; }
-        .username-red { font-weight: bold; color: #ff5252; text-decoration: underline; }
         .username-lightgreen { font-weight: bold; color: #52b788; text-decoration: underline; }
         
         .claimed-robux { color: #00b06c; font-weight: 500; }
@@ -122,12 +120,8 @@
             <div class="status">● <span id="activeCount">180</span> active</div>
         </div>
         
-        <!-- id ismi tam olarak esitlendi -->
         <div class="chat-box" id="chatBox">
-            <div class="chat-msg"><span class="username-green">StarByte</span> <span class="claimed-robux">just claimed Robux!</span></div>
-            <div class="chat-msg"><span class="username-lightgreen">TigerNova_7:</span> <span class="user-text">This is great</span></div>
-            <div class="chat-msg"><span class="username-green">RogueStar</span> <span class="claimed-nitro">just claimed Nitro!</span></div>
-            <div class="chat-msg"><span class="username-green">BlazeEaglePro8</span> <span class="claimed-robux">just claimed Robux!</span></div>
+            <!-- İlk başlangıç mesajları -->
         </div>
 
         <div class="chat-input-area">
@@ -138,23 +132,40 @@
 </div>
 
 <script>
-    var greenNames = ['NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'RogueStar', 'StarByte', 'DragonReaperTV', 'ShadowCreeper', 'BloxMaster', 'X_Builder'];
-    var lightGreenNames = ['TigerNova_7', 'GamerElite_X', 'CyberLoot_TR', 'OyunKrali_0', 'LootHub_TR'];
-    var orangeNames = ['Ultra_EagleX3', 'GamerPro_9', 'VortexRider', 'Hyper_99'];
-    var redNames = ['SolarSable2024', 'Crimson_V', 'Matrix_X', 'VoidGamer'];
+    window.onload = function() {
+        // Havuzdaki Oyuncu İsimleri
+        var playerNames = ['StarByte', 'TigerNova_7', 'RogueStar', 'BlazeEaglePro8', 'NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'ShadowCreeper', 'BloxMaster', 'GamerElite_X', 'CyberLoot_TR', 'Ultra_EagleX3', 'SolarSable2024', 'Crimson_V', 'Matrix_X'];
+        
+        var cBox = document.getElementById('chatBox');
+        var step = 0; // Döngü sırasını takip eden sayaç
 
-    // ID eslesmesi tam saglandi
-    var cBox = document.getElementById('chatBox');
+        function getRandName() {
+            return playerNames[Math.floor(Math.random() * playerNames.length)];
+        }
 
-    setInterval(function() {
-        if(cBox) {
-            var randType = Math.random();
+        function generateNextMessage() {
+            if(!cBox) return;
             var el = document.createElement('div');
             el.className = 'chat-msg';
 
-            if (randType < 0.85) {
-                var name = greenNames[Math.floor(Math.random() * greenNames.length)];
-                var isRobux = Math.random() > 0.5;
-                if(isRobux) {
-                    el.innerHTML = '<span class="username-green">' + name + '</span> <span class="claimed-robux">just claimed Robux!</span>';
-                } else {
+            // 4 Adımlı şablonu sürekli tekrar et, sadece isimleri değiştir
+            if (step == 0) {
+                el.innerHTML = '<span class="username-green">' + getRandName() + '</span> <span class="claimed-robux">just claimed Robux!</span>';
+                step = 1;
+            } else if (step == 1) {
+                el.innerHTML = '<span class="username-lightgreen">' + getRandName() + ':</span> <span class="user-text">This is great</span>';
+                step = 2;
+            } else if (step == 2) {
+                el.innerHTML = '<span class="username-green">' + getRandName() + '</span> <span class="claimed-nitro">just claimed Nitro!</span>';
+                step = 3;
+            } else if (step == 3) {
+                el.innerHTML = '<span class="username-green">' + getRandName() + '</span> <span class="claimed-robux">just claimed Robux!</span>';
+                step = 0; // Döngüyü başa sar
+            }
+
+            cBox.appendChild(el);
+
+            // Kutunun taşmasını önlemek için en üstteki mesajı sil
+            if (cBox.children.length > 8) { 
+                cBox.removeChild(cBox.children[0]); 
+            }
