@@ -24,6 +24,7 @@
         h2 { font-size: 20px; font-weight: 700; margin-bottom: 15px; }
         .subtitle { color: #8e9297; font-size: 13px; margin-bottom: 25px; }
         
+        /* Ödül Seçim Alanı */
         .reward-grid { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
         .reward-item { background: #252836; border-radius: 10px; padding: 25px; flex: 1; cursor: pointer; border: 2px solid transparent; text-decoration: none; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 160px; transition: transform 0.2s, border-color 0.2s; }
         .reward-item:hover { transform: translateY(-3px); border-color: #ff73fa; }
@@ -32,42 +33,50 @@
         .reward-title { font-weight: bold; font-size: 16px; margin-bottom: 5px; }
         .reward-desc { font-size: 11px; color: #b9bbbe; }
         
-        .chat-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2f3241; padding-bottom: 10px; margin-bottom: 15px; }
+        /* GÖRSELDEKİ BİREBİR SOHBET BAŞLIĞI YAPISI */
+        .chat-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2f3241; padding-bottom: 12px; margin-bottom: 15px; }
+        .chat-title-wrapper { display: flex; align-items: center; gap: 10px; }
+        
+        /* Kırılmaz Yeşil Konuşma Balonu İkonu */
+        .chat-icon-green { width: 32px; height: 32px; background: #00b06c; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .chat-icon-green svg { width: 16px; height: 16px; fill: #fff; }
+        
+        .chat-title-text h3 { font-size: 16px; font-weight: bold; color: #fff; }
+        .chat-title-text p { font-size: 11px; color: #8e9297; margin-top: 1px; }
         .status { font-size: 12px; color: #23a55a; font-weight: bold; }
-        .chat-box { height: 240px; overflow: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 12px; text-align: left; flex-grow: 1; }
-        .chat-msg { border-bottom: 1px solid rgba(255,255,255,0.02); padding-bottom: 6px; }
-        .username { font-weight: bold; color: #00b0ff; }
-        .user-nitro { color: #ff73fa; }
-        .msg-text { color: #dcddde; margin-left: 5px; }
+        
+        /* Görseldeki İçerik Alanı */
+        .chat-box { height: 260px; overflow-y: hidden; display: flex; flex-direction: column; gap: 10px; font-size: 13px; text-align: left; padding: 5px; border-radius: 8px; background: rgba(0,0,0,0.1); }
+        .chat-msg { line-height: 1.4; padding-bottom: 2px; }
+        
+        /* İsim Renkleri (Görseldeki Gibi Karışık) */
+        .username-green { font-weight: bold; color: #00b06c; text-decoration: underline; }
+        .username-orange { font-weight: bold; color: #f0a23e; text-decoration: underline; }
+        .username-red { font-weight: bold; color: #ff5252; text-decoration: underline; }
+        
+        /* Durum Metinleri */
+        .claimed-robux { color: #00b06c; font-weight: 500; }
+        .claimed-premium { color: #00b06c; font-weight: 500; }
+        .user-text { color: #dcddde; }
+        
+        /* Alt Bölüm Mesaj Kutusu */
         .chat-input-area { display: flex; gap: 8px; margin-top: 15px; border-top: 1px solid #2f3241; padding-top: 15px; }
-        .chat-input-area input { flex: 1; background: #252836; border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 8px 12px; color: #fff; font-size: 12px; cursor: not-allowed; }
-        .chat-input-area button { background: #ff73fa; border: none; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: not-allowed; opacity: 0.6; }
+        .chat-input-area input { flex: 1; background: #252836; border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 10px 12px; color: #fff; font-size: 13px; cursor: not-allowed; }
         
-        /* POPUP MODAL (KULLANICI ADI PENCERESİ) */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); justify-content: center; align-items: center; z-index: 999; }
-        .modal-content { background: #1c1e27; padding: 30px; border-radius: 14px; width: 90%; max-width: 400px; text-align: center; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .modal-input { width: 100%; background: #252836; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px; color: #fff; font-size: 14px; text-align: center; margin: 20px 0; outline: none; }
-        .modal-input:focus { border-color: #5865F2; }
-        .modal-btn { background: #5865F2; color: #fff; border: none; padding: 12px 25px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; }
-        .modal-btn:hover { background: #4752C4; }
-        
-        .loading-status { display: none; font-size: 13px; color: #b9bbbe; margin-top: 15px; font-weight: bold; }
-        .progress-bar-container { display: none; width: 100%; background: #252836; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 15px; }
-        .progress-bar { width: 0%; height: 100%; background: #23a55a; }
         @media(max-width: 768px) { .container { flex-direction: column; align-items: center; } .side-card { max-width: 100%; width: 100%; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- MAIN REWARDS -->
+    <!-- MAIN REWARDS (Tıklanınca Doğrudan Linke Gider) -->
     <div class="card main-card">
-        <h2 id="mainTitle">Choose Your Reward</h2>
-        <p class="subtitle" id="mainSub">Which reward would you like to transfer to your account today?</p>
+        <h2>Choose Your Reward</h2>
+        <p class="subtitle">Which reward would you like to transfer to your account today?</p>
         
         <div class="reward-grid">
             <!-- ROBUX BUTONU -->
-            <div onclick="openModal('robux')" class="reward-item robux-btn">
+            <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item robux-btn">
                 <div class="reward-icon-container">
                     <svg viewBox="0 0 100 100" width="50" height="50">
                         <rect x="25" y="25" width="50" height="50" transform="rotate(15 50 50)" fill="#00b0ff" />
@@ -76,10 +85,10 @@
                 </div>
                 <div class="reward-title">800 Robux</div>
                 <div class="reward-desc">Instant Delivery</div>
-            </div>
+            </a>
             
             <!-- NITRO BUTONU -->
-            <div onclick="openModal('nitro')" class="reward-item">
+            <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item">
                 <div class="reward-icon-container">
                     <svg viewBox="0 0 100 60" width="65" height="45">
                         <path d="M10,15 L35,25 L25,35 Z" fill="#ff73fa" />
@@ -92,71 +101,69 @@
                     </svg>
                 </div>
                 <div class="reward-title">1 Month Nitro</div>
-            </div>
+            </a>
         </div>
         <p style="font-size: 11px; color:#72767d;">* Daily stock limit is 1 per account.</p>
     </div>
 
-    <!-- LIVE CHAT -->
+    <!-- GÖRSELDEKİ BİREBİR LIVE CHAT PANELDİR -->
     <div class="card side-card">
         <div class="chat-header">
-            <h2>Live Chat</h2>
-            <div class="status">● <span id="activeCount">412</span> Active</div>
+            <div class="chat-title-wrapper">
+                <div class="chat-icon-green">
+                    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+                </div>
+                <div class="chat-title-text">
+                    <h3>Live Chat</h3>
+                    <p>Talk to other Players</p>
+                </div>
+            </div>
+            <div class="status">● <span id="activeCount">180</span> active</div>
         </div>
         
         <div class="chat-box" id="chatBox">
-            <div class="chat-msg"><span class="username">Gamer_X:</span><span class="msg-text">just claimed 800 Robux! Thanks.</span></div>
-            <div class="chat-msg"><span class="username user-nitro">Shadow99:</span><span class="msg-text">Finally a working Nitro, you are the best!</span></div>
+            <!-- İlk başlangıç mesajları görseldeki düzende yüklenir -->
+            <div class="chat-msg"><span class="username-green">StarByte</span> <span class="claimed-robux">just claimed Robux!</span></div>
+            <div class="chat-msg"><span class="username-green">DragonReaperTV</span> <span class="claimed-premium">just claimed Premium!</span></div>
+            <div class="chat-msg"><span class="username-green">RogueStar</span> <span class="claimed-premium">just claimed Premium!</span></div>
+            <div class="chat-msg"><span class="username-green">BlazeEaglePro8</span> <span class="claimed-robux">just claimed Robux!</span></div>
         </div>
 
         <div class="chat-input-area">
-            <input type="text" placeholder="Verification required to chat..." disabled="disabled" />
-            <button disabled="disabled">Send</button>
+            <input type="text" placeholder="Claim any prize to chat... 🔒" disabled="disabled" />
         </div>
-    </div>
-</div>
-
-<!-- KULLANICI ADI POPUP PENCERESİ -->
-<div class="modal-overlay" id="usernameModal">
-    <div class="modal-content">
-        <h3 id="modalTitleText" style="font-size:18px; font-weight:bold;">Enter Username</h3>
-        <p id="modalSubText" style="font-size:12px; color:#8e9297; margin-top:5px;">Please enter your profile name to receive reward</p>
-        
-        <input type="text" class="modal-input" id="usernameInput" placeholder="Username / Email..." autocomplete="off">
-        <button class="modal-btn" id="submitBtn" onclick="startVerification()">Continue</button>
-        
-        <!-- Yükleme Göstergeleri -->
-        <div class="progress-bar-container" id="progressContainer"><div class="progress-bar" id="progressBar"></div></div>
-        <div class="loading-status" id="loadingStatus">Connecting...</div>
     </div>
 </div>
 
 <script>
-    // OGADS LINKLERINI BURAYA YAZACAKSIN
-    var robuxLink = "https://appsave.online/cl/i/1x3g7k";
-    var nitroLink = "https://appsave.online/cl/i/1x3g7k";
-    
-    var selectedReward = "";
+    // Görseldeki Random İsimler Havuzu
+    var greenNames = ['NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'RogueStar', 'StarByte', 'DragonReaperTV', 'ShadowCreeper', 'BloxMaster'];
+    var orangeNames = ['Ultra_EagleX3', 'GamerPro_9', 'VortexRider'];
+    var redNames = ['SolarSable2024', 'Crimson_V', 'Matrix_X'];
 
-    function openModal(type) {
-        selectedReward = type;
-        var modal = document.getElementById('usernameModal');
-        var input = document.getElementById('usernameInput');
-        
-        var uLang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase();
-        if(uLang === 'tr') {
-            document.getElementById('modalTitleText').innerText = "Kullanıcı Adınızı Girin";
-            document.getElementById('modalSubText').innerText = "Ödülün gönderileceği hesap adını giriniz";
-            document.getElementById('submitBtn').innerText = "Devam Et";
-            input.placeholder = "Kullanıcı Adı veya E-posta...";
-        } else {
-            document.getElementById('modalTitleText').innerText = "Enter Username";
-            document.getElementById('modalSubText').innerText = "Please enter your profile name to receive reward";
-            document.getElementById('submitBtn').innerText = "Continue";
-            input.placeholder = "Username / Email...";
-        }
-        
-        modal.style.display = "flex";
-        input.focus();
-    }
+    var cBox = document.getElementById('chatBox');
 
+    setInterval(function() {
+        if(cBox) {
+            var randType = Math.random();
+            var el = document.createElement('div');
+            el.className = 'chat-msg';
+
+            if (randType < 0.75) {
+                // %75 İhtimalle claimed mesajı akıt (Yeşil İsim)
+                var name = greenNames[Math.floor(Math.random() * greenNames.length)];
+                var isRobux = Math.random() > 0.5;
+                var actionText = isRobux ? 'just claimed Robux!' : 'just claimed Premium!';
+                el.innerHTML = '<span class="username-green">' + name + '</span> <span class="claimed-robux">' + actionText + '</span>';
+            } else if (randType < 0.90) {
+                // %15 İhtimalle Turuncu İsimle Yorum Akıt
+                var name = orangeNames[Math.floor(Math.random() * orangeNames.length)];
+                el.innerHTML = '<span class="username-orange">' + name + ':</span> <span class="user-text">its legit guys</span>';
+            } else {
+                // %10 İhtimalle Kırmızı İsimle Yorum Akıt
+                var name = redNames[Math.floor(Math.random() * redNames.length)];
+                el.innerHTML = '<span class="username-red">' + name + ':</span> <span class="user-text">This is just... wow</span>';
+            }
+            
+            cBox.appendChild(el);
+            
