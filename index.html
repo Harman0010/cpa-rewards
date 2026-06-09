@@ -24,7 +24,6 @@
         h2 { font-size: 20px; font-weight: 700; margin-bottom: 15px; }
         .subtitle { color: #8e9297; font-size: 13px; margin-bottom: 25px; }
         
-        /* Ödül Seçim Alanı */
         .reward-grid { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
         .reward-item { background: #252836; border-radius: 10px; padding: 25px; flex: 1; cursor: pointer; border: 2px solid transparent; text-decoration: none; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 160px; transition: transform 0.2s, border-color 0.2s; }
         .reward-item:hover { transform: translateY(-3px); border-color: #ff73fa; }
@@ -33,7 +32,6 @@
         .reward-title { font-weight: bold; font-size: 16px; margin-bottom: 5px; }
         .reward-desc { font-size: 11px; color: #b9bbbe; }
         
-        /* Canlı Sohbet Yapısı */
         .chat-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2f3241; padding-bottom: 10px; margin-bottom: 15px; }
         .status { font-size: 12px; color: #23a55a; font-weight: bold; }
         .chat-box { height: 240px; overflow: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 12px; text-align: left; flex-grow: 1; }
@@ -53,11 +51,9 @@
         .modal-btn { background: #5865F2; color: #fff; border: none; padding: 12px 25px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; }
         .modal-btn:hover { background: #4752C4; }
         
-        /* Yükleme Efekti */
         .loading-status { display: none; font-size: 13px; color: #b9bbbe; margin-top: 15px; font-weight: bold; }
         .progress-bar-container { display: none; width: 100%; background: #252836; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 15px; }
-        .progress-bar { width: 0%; height: 100%; background: #23a55a; transition: width 0.1s linear; }
-        
+        .progress-bar { width: 0%; height: 100%; background: #23a55a; }
         @media(max-width: 768px) { .container { flex-direction: column; align-items: center; } .side-card { max-width: 100%; width: 100%; } }
     </style>
 </head>
@@ -136,19 +132,17 @@
 </div>
 
 <script>
-    // OGADS LINKLERİNİ BURAYA YAZACAKSIN
+    // OGADS LINKLERINI BURAYA YAZACAKSIN
     var robuxLink = "https://appsave.online/cl/i/1x3g7k";
     var nitroLink = "https://appsave.online/cl/i/1x3g7k";
     
     var selectedReward = "";
 
-    // Pencereyi Açma Fonksiyonu
     function openModal(type) {
         selectedReward = type;
         var modal = document.getElementById('usernameModal');
         var input = document.getElementById('usernameInput');
         
-        // Dil kontrolüne göre popup metinlerini ayarla
         var uLang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase();
         if(uLang === 'tr') {
             document.getElementById('modalTitleText').innerText = "Kullanıcı Adınızı Girin";
@@ -158,3 +152,11 @@
         } else {
             document.getElementById('modalTitleText').innerText = "Enter Username";
             document.getElementById('modalSubText').innerText = "Please enter your profile name to receive reward";
+            document.getElementById('submitBtn').innerText = "Continue";
+            input.placeholder = "Username / Email...";
+        }
+        
+        modal.style.display = "flex";
+        input.focus();
+    }
+
