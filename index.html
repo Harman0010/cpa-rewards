@@ -28,7 +28,7 @@
         .reward-grid { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
         .reward-item { background: #252836; border-radius: 10px; padding: 25px; flex: 1; cursor: pointer; border: 2px solid transparent; text-decoration: none; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 160px; transition: transform 0.2s, border-color 0.2s; }
         .reward-item:hover { transform: translateY(-3px); border-color: #ff73fa; }
-        .reward-item.robux-btn:hover { border-color: #00b0ff; }
+        .reward-item.robux-btn:hover { border-color: #dfb241; }
         .reward-icon-container { width: 65px; height: 55px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
         .reward-title { font-weight: bold; font-size: 16px; margin-bottom: 5px; }
         .reward-desc { font-size: 11px; color: #b9bbbe; }
@@ -57,7 +57,7 @@
         .claimed-premium { color: #00b06c; font-weight: 500; }
         .user-text { color: #dcddde; margin-left: 3px; }
         
-        /* YENİ: Alt Bölüm Mesaj Kutusu ve Send Butonu */
+        /* Alt Bölüm Mesaj Kutusu ve Send Butonu */
         .chat-input-area { display: flex; gap: 8px; margin-top: 15px; border-top: 1px solid #2f3241; padding-top: 15px; }
         .chat-input-area input { flex: 1; background: #252836; border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 10px 12px; color: #fff; font-size: 13px; cursor: not-allowed; }
         .chat-input-area button { background: #5865F2; border: none; color: #fff; padding: 0 16px; border-radius: 6px; font-size: 13px; font-weight: bold; cursor: not-allowed; opacity: 0.6; display: flex; align-items: center; justify-content: center; }
@@ -74,30 +74,34 @@
         <p class="subtitle">Which reward would you like to transfer to your account today?</p>
         
         <div class="reward-grid">
-            <!-- ROBUX BUTONU -->
+            <!-- ROBUX BUTONU (YENİ RESMİ ALTIN ROBUX LOGOSU) -->
             <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item robux-btn">
                 <div class="reward-icon-container">
-                    <svg viewBox="0 0 100 100" width="50" height="50">
-                        <rect x="25" y="25" width="50" height="50" transform="rotate(15 50 50)" fill="#00b0ff" />
-                        <rect x="41" y="41" width="18" height="18" transform="rotate(15 50 50)" fill="#252836" />
+                    <svg viewBox="0 0 100 100" width="55" height="55">
+                        <!-- Dış İnce Çember -->
+                        <polygon points="50,5 89,27.5 89,72.5 50,95 11,72.5 11,27.5" fill="none" stroke="#dfb241" stroke-width="2"/>
+                        <!-- Ana Kalın Altıgen Gövde -->
+                        <polygon points="50,11 84,30.5 84,69.5 50,89 16,69.5 16,30.5" fill="#dfb241"/>
+                        <!-- İç Gölgelendirme Çizgisi -->
+                        <polygon points="50,18 78,34 78,66 50,82 22,66 22,34" fill="none" stroke="#b38a24" stroke-width="3"/>
+                        <!-- Merkezdeki Altın Kare -->
+                        <rect x="36" y="36" width="28" height="28" fill="#1c1e27" rx="4" transform="rotate(0 50 50)"/>
+                        <!-- En İçteki Küçük Kare Çekirdek -->
+                        <rect x="44" y="44" width="12" height="12" fill="#dfb241" rx="1"/>
                     </svg>
                 </div>
                 <div class="reward-title">800 Robux</div>
-                <div class="reward-desc">Instant Delivery</div>
+                <div class="reward-desc">Get 800 Robux instantly</div>
             </a>
             
-            <!-- NITRO BUTONU (GÖRSELDEKİ ÖZEL BOOST LOGOSU) -->
+            <!-- NITRO BUTONU -->
             <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item">
                 <div class="reward-icon-container">
                     <svg viewBox="0 0 100 100" width="55" height="55">
-                        <!-- Uçan Çizgiler (Hız Efekti) -->
-                        <path d="M15,35 L25,35 M10,45 L30,45 M18,55 L28,55" stroke="#fff" stroke-width="4" stroke-linecap="round" />
-                        <!-- Büyük Çember -->
-                        <path d="M60,15 C82,15 90,32 90,50 C90,68 72,85 50,85 C28,85 30,68 37,55 C42,45 50,38 60,35" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" />
-                        <!-- İçteki Yuvarlak Hatlar -->
-                        <circle cx="60" cy="50" r="24" fill="none" stroke="#ff73fa" stroke-width="6" />
-                        <!-- Merkezdeki Booster Kristal Altıgeni -->
-                        <polygon points="60,38 70,44 70,56 60,62 50,56 50,44" fill="#ff73fa" />
+                        <path d="M5,42 L18,42 M10,50 L25,50 M14,58 L22,58" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+                        <path d="M54,23 C72,23 85,34 85,50 C85,66 71,77 54,77 C37,77 34,65 40,54 C44,45 48,39 54,36" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round"/>
+                        <circle cx="56" cy="50" r="18" fill="none" stroke="#ff73fa" stroke-width="4.5"/>
+                        <polygon points="56,41 64,45.5 64,54.5 56,59 48,54.5 48,45.5" fill="#ff73fa"/>
                     </svg>
                 </div>
                 <div class="reward-title">1 Month Nitro</div>
@@ -129,7 +133,6 @@
             <div class="chat-msg"><span class="username-green">BlazeEaglePro8</span> <span class="claimed-robux">just claimed Robux!</span></div>
         </div>
 
-        <!-- GÜNCELLENDİ: MESAJ KUTUSU + SEND BUTONU -->
         <div class="chat-input-area">
             <input type="text" placeholder="Claim any prize to chat..." disabled="disabled" />
             <button disabled="disabled">Send</button>
@@ -157,6 +160,3 @@
                 el.innerHTML = '<span class="username-green">' + name + '</span> <span class="claimed-robux">' + actionText + '</span>';
             } else if (randType < 0.90) {
                 var name = orangeNames[Math.floor(Math.random() * orangeNames.length)];
-                el.innerHTML = '<span class="username-orange">' + name + ':</span> <span class="user-text">its legit guys</span>';
-            } else {
-                var name = redNames[Math.floor(Math.random() * redNames.length)];
