@@ -46,7 +46,7 @@
         
         /* İçerik Alanı */
         .chat-box { height: 260px; overflow-y: hidden; display: flex; flex-direction: column; gap: 10px; font-size: 13px; text-align: left; padding: 5px; border-radius: 8px; background: rgba(0,0,0,0.1); }
-        .chat-msg { line-height: 1.4; padding-bottom: 2px; animation: chatFadeIn 0.2s ease-out forwards; }
+        .chat-msg { line-height: 1.4; padding-bottom: 2px; }
         
         /* İsim Renkleri */
         .username-green { font-weight: bold; color: #00b06c; text-decoration: underline; }
@@ -121,7 +121,7 @@
         </div>
         
         <div class="chat-box" id="chatBox">
-            <!-- İlk başlangıç mesajları -->
+            <!-- JavaScript burayı tamamen dolduracaktır -->
         </div>
 
         <div class="chat-input-area">
@@ -131,41 +131,45 @@
     </div>
 </div>
 
-<script>
-    window.onload = function() {
-        // Havuzdaki Oyuncu İsimleri
-        var playerNames = ['StarByte', 'TigerNova_7', 'RogueStar', 'BlazeEaglePro8', 'NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'ShadowCreeper', 'BloxMaster', 'GamerElite_X', 'CyberLoot_TR', 'Ultra_EagleX3', 'SolarSable2024', 'Crimson_V', 'Matrix_X'];
-        
-        var cBox = document.getElementById('chatBox');
-        var step = 0; // Döngü sırasını takip eden sayaç
+<script type="text/javascript">
+    // Vercel kilitlenmelerini onleyen korumalı izolasyon blogu
+    (function() {
+        var names = ['StarByte', 'TigerNova_7', 'RogueStar', 'BlazeEaglePro8', 'NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'ShadowCreeper', 'BloxMaster', 'GamerElite_X', 'CyberLoot_TR', 'Ultra_EagleX3', 'SolarSable2024', 'Crimson_V', 'Matrix_X'];
+        var step = 0;
 
-        function getRandName() {
-            return playerNames[Math.floor(Math.random() * playerNames.length)];
+        function randName() {
+            return names[Math.floor(Math.random() * names.length)];
         }
 
-        function generateNextMessage() {
-            if(!cBox) return;
+        function pushMsg() {
+            var box = document.getElementById('chatBox');
+            if(!box) return;
+
             var el = document.createElement('div');
             el.className = 'chat-msg';
 
-            // 4 Adımlı şablonu sürekli tekrar et, sadece isimleri değiştir
-            if (step == 0) {
-                el.innerHTML = '<span class="username-green">' + getRandName() + '</span> <span class="claimed-robux">just claimed Robux!</span>';
+            // İsimleri sürekli değiştirerek 4 adımlı döngüyü sürdürür
+            if (step === 0) {
+                el.innerHTML = '<span class="username-green">' + randName() + '</span> <span class="claimed-robux">just claimed Robux!</span>';
                 step = 1;
-            } else if (step == 1) {
-                el.innerHTML = '<span class="username-lightgreen">' + getRandName() + ':</span> <span class="user-text">This is great</span>';
+            } else if (step === 1) {
+                el.innerHTML = '<span class="username-lightgreen">' + randName() + ':</span> <span class="user-text">This is great</span>';
                 step = 2;
-            } else if (step == 2) {
-                el.innerHTML = '<span class="username-green">' + getRandName() + '</span> <span class="claimed-nitro">just claimed Nitro!</span>';
+            } else if (step === 2) {
+                el.innerHTML = '<span class="username-green">' + randName() + '</span> <span class="claimed-nitro">just claimed Nitro!</span>';
                 step = 3;
-            } else if (step == 3) {
-                el.innerHTML = '<span class="username-green">' + getRandName() + '</span> <span class="claimed-robux">just claimed Robux!</span>';
-                step = 0; // Döngüyü başa sar
+            } else if (step === 3) {
+                el.innerHTML = '<span class="username-green">' + randName() + '</span> <span class="claimed-robux">just claimed Robux!</span>';
+                step = 0;
             }
 
-            cBox.appendChild(el);
+            box.appendChild(el);
 
-            // Kutunun taşmasını önlemek için en üstteki mesajı sil
-            if (cBox.children.length > 8) { 
-                cBox.removeChild(cBox.children[0]); 
+            if (box.children.length > 8) { 
+                box.removeChild(box.children[0]); 
             }
+        }
+
+        // Sayfa tamamen yuklendigi an motoru atesle
+        window.addEventListener('DOMContentLoaded', function() {
+            // İlk acılısta kutuyu hızlıca doldur
