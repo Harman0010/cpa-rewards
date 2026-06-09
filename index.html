@@ -52,6 +52,7 @@
         .username-green { font-weight: bold; color: #00b06c; text-decoration: underline; }
         .username-orange { font-weight: bold; color: #f0a23e; text-decoration: underline; }
         .username-red { font-weight: bold; color: #ff5252; text-decoration: underline; }
+        .username-lightgreen { font-weight: bold; color: #52b788; text-decoration: underline; }
         
         .claimed-robux { color: #00b06c; font-weight: 500; }
         .claimed-premium { color: #00b06c; font-weight: 500; }
@@ -74,19 +75,17 @@
         <p class="subtitle">Which reward would you like to transfer to your account today?</p>
         
         <div class="reward-grid">
-            <!-- ROBUX BUTONU (YENİ RESMİ ALTIN ROBUX LOGOSU) -->
+            <!-- ROBUX BUTONU (GÖRSELDEKİ RESMİ ALTIN ROBUX LOGOSU GÜNCELLENDİ) -->
             <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item robux-btn">
                 <div class="reward-icon-container">
                     <svg viewBox="0 0 100 100" width="55" height="55">
-                        <!-- Dış İnce Çember -->
-                        <polygon points="50,5 89,27.5 89,72.5 50,95 11,72.5 11,27.5" fill="none" stroke="#dfb241" stroke-width="2"/>
-                        <!-- Ana Kalın Altıgen Gövde -->
-                        <polygon points="50,11 84,30.5 84,69.5 50,89 16,69.5 16,30.5" fill="#dfb241"/>
-                        <!-- İç Gölgelendirme Çizgisi -->
-                        <polygon points="50,18 78,34 78,66 50,82 22,66 22,34" fill="none" stroke="#b38a24" stroke-width="3"/>
-                        <!-- Merkezdeki Altın Kare -->
-                        <rect x="36" y="36" width="28" height="28" fill="#1c1e27" rx="4" transform="rotate(0 50 50)"/>
-                        <!-- En İçteki Küçük Kare Çekirdek -->
+                        <!-- Tam Eşit Dış Kalın Altıgen Gövde -->
+                        <polygon points="50,11 84,30.5 84,69.5 50,89 16,69.5 16,30.5" fill="#dfb241" stroke="#b38a24" stroke-width="2.5"/>
+                        <!-- İç İnce Çizgi Detayı -->
+                        <polygon points="50,21 76,36 76,64 50,79 24,64 24,36" fill="none" stroke="#ffe596" stroke-width="1.5"/>
+                        <!-- Merkezdeki Büyük Altın Kare Delik -->
+                        <rect x="36" y="36" width="28" height="28" fill="#1c1e27" stroke="#dfb241" stroke-width="4" rx="3"/>
+                        <!-- En İçteki Kare Çekirdek -->
                         <rect x="44" y="44" width="12" height="12" fill="#dfb241" rx="1"/>
                     </svg>
                 </div>
@@ -128,7 +127,7 @@
         
         <div class="chat-box" id="chatBox">
             <div class="chat-msg"><span class="username-green">StarByte</span> <span class="claimed-robux">just claimed Robux!</span></div>
-            <div class="chat-msg"><span class="username-green">DragonReaperTV</span> <span class="claimed-premium">just claimed Premium!</span></div>
+            <div class="chat-msg"><span class="username-lightgreen">TigerNova_7:</span> <span class="user-text">This is great</span></div>
             <div class="chat-msg"><span class="username-green">RogueStar</span> <span class="claimed-premium">just claimed Premium!</span></div>
             <div class="chat-msg"><span class="username-green">BlazeEaglePro8</span> <span class="claimed-robux">just claimed Robux!</span></div>
         </div>
@@ -142,6 +141,7 @@
 
 <script>
     var greenNames = ['NeoFalcon_3', 'PandaBlazeYT99', 'Noob_NovaDev3', 'Ghost_Panda2', 'RogueStar', 'StarByte', 'DragonReaperTV', 'ShadowCreeper', 'BloxMaster'];
+    var lightGreenNames = ['TigerNova_7', 'GamerElite_X', 'CyberLoot_TR'];
     var orangeNames = ['Ultra_EagleX3', 'GamerPro_9', 'VortexRider'];
     var redNames = ['SolarSable2024', 'Crimson_V', 'Matrix_X'];
 
@@ -153,10 +153,9 @@
             var el = document.createElement('div');
             el.className = 'chat-msg';
 
-            if (randType < 0.75) {
+            // Sürekli claimed çıkması ve araya görseldeki yorumların serpiştirilmesi
+            if (randType < 0.82) {
+                // %82 İhtimalle claimed mesajı akıt (Sürekli claim akışı)
                 var name = greenNames[Math.floor(Math.random() * greenNames.length)];
                 var isRobux = Math.random() > 0.5;
                 var actionText = isRobux ? 'just claimed Robux!' : 'just claimed Premium!';
-                el.innerHTML = '<span class="username-green">' + name + '</span> <span class="claimed-robux">' + actionText + '</span>';
-            } else if (randType < 0.90) {
-                var name = orangeNames[Math.floor(Math.random() * orangeNames.length)];
