@@ -15,50 +15,127 @@
             color: #fff;
             padding: 20px;
         }
-        .container { display: flex; gap: 20px; max-width: 900px; width: 100%; flex-wrap: wrap; justify-content: center; }
+        .container { display: flex; gap: 20px; max-width: 1200px; width: 100%; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
         .card { background: #1c1e27; border-radius: 14px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.03); }
-        .side-card { flex: 1; min-width: 290px; max-width: 320px; display: flex; flex-direction: column; }
+        .side-card { flex: 1; min-width: 290px; max-width: 350px; display: flex; flex-direction: column; }
         .main-card { flex: 2; min-width: 320px; max-width: 460px; text-align: center; }
-        h2 { font-size: 20px; margin-bottom: 15px; font-weight: 700; }
+        
+        /* Başlıklar */
+        .card-header-area { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .help-icon-box { width: 36px; height: 36px; background: #3b82f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; }
+        h2 { font-size: 20px; font-weight: 700; }
+        .card-sub { color: #8e9297; font-size: 12px; margin-top: -12px; margin-bottom: 15px; display: block; }
         .subtitle { color: #8e9297; font-size: 13px; margin-bottom: 25px; }
+        
+        /* Ödül Seçim Alanı */
         .reward-grid { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
-        .reward-item { background: #252836; border-radius: 10px; padding: 25px; flex: 1; cursor: pointer; border: 2px solid transparent; text-decoration: none; color: #fff; display: block; transition: transform 0.2s, border-color 0.2s; }
+        .reward-item { background: #252836; border-radius: 10px; padding: 25px; flex: 1; cursor: pointer; border: 2px solid transparent; text-decoration: none; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 160px; transition: transform 0.2s, border-color 0.2s; }
         .reward-item:hover { transform: translateY(-3px); border-color: #ff73fa; }
         .reward-item.robux-btn:hover { border-color: #00b0ff; }
-        
-        /* Orijinal Vektör Logolar */
-        .reward-icon-container { width: 55px; height: 55px; margin: 0 auto 12px auto; display: flex; align-items: center; justify-content: center; }
-        
+        .reward-icon-container { width: 65px; height: 55px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
         .reward-title { font-weight: bold; font-size: 16px; margin-bottom: 5px; }
         .reward-desc { font-size: 11px; color: #b9bbbe; }
         
-        /* Canlı Sohbet ve Yeni Input Yapısı */
+        /* Canlı Sohbet Yapısı */
         .chat-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2f3241; padding-bottom: 10px; margin-bottom: 15px; }
         .status { font-size: 12px; color: #23a55a; font-weight: bold; }
-        .chat-box { height: 210px; overflow: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 12px; text-align: left; flex-grow: 1; }
+        .chat-box { height: 260px; overflow: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 12px; text-align: left; flex-grow: 1; }
         .chat-msg { border-bottom: 1px solid rgba(255,255,255,0.02); padding-bottom: 6px; }
         .username { font-weight: bold; color: #00b0ff; }
         .user-nitro { color: #ff73fa; }
         .msg-text { color: #dcddde; margin-left: 5px; }
-        
-        /* Sahte Yazma Alanı */
         .chat-input-area { display: flex; gap: 8px; margin-top: 15px; border-top: 1px solid #2f3241; padding-top: 15px; }
         .chat-input-area input { flex: 1; background: #252836; border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 8px 12px; color: #fff; font-size: 12px; cursor: not-allowed; }
         .chat-input-area button { background: #ff73fa; border: none; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: not-allowed; opacity: 0.6; }
         
-        @media(max-width: 768px) { .container { flex-direction: column; align-items: center; } .side-card { max-width: 100%; width: 100%; } }
+        /* Yeni: Akordeon SSS (Help) Yapısı */
+        .help-list { display: flex; flex-direction: column; gap: 10px; background: rgba(255,255,255,0.01); padding: 10px; border-radius: 10px; }
+        .accordion-item { background: #252836; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02); }
+        .accordion-header { padding: 12px 15px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; user-select: none; }
+        .accordion-header:hover { background: #2f3245; }
+        .accordion-arrow { font-size: 10px; color: #8e9297; transition: transform 0.2s; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; background: rgba(0,0,0,0.1); font-size: 12px; color: #b9bbbe; line-height: 1.5; }
+        .accordion-content-inner { padding: 15px; }
+        .accordion-item.active .accordion-content { max-height: 150px; }
+        .accordion-item.active .accordion-arrow { transform: rotate(180deg); }
+        
+        @media(max-width: 992px) { .container { flex-direction: column; align-items: center; } .side-card { max-width: 100%; width: 100%; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- REWARDS BLOCK -->
+    <!-- SOL BLOK: YENİ AKORDEON HELP KUTUSU -->
+    <div class="card side-card">
+        <div class="card-header-area">
+            <div class="help-icon-box">?</div>
+            <div>
+                <h2 id="hTitle">Help</h2>
+                <span id="hSub" class="card-sub">Have questions or issues?</span>
+            </div>
+        </div>
+        
+        <div class="help-list">
+            <!-- Soru 1 -->
+            <div class="accordion-item active">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span id="q1">How do I use this?</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner" id="a1">Select a reward. For Roblox rewards, enter your Roblox username. For Nitro rewards, no username is needed. Then complete one quest.</div>
+                </div>
+            </div>
+            <!-- Soru 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span id="q2">How do I receive my prize?</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner" id="a2">Once the sponsor quest validation is successful, your reward code will be generated and instantly printed right on your screen.</div>
+                </div>
+            </div>
+            <!-- Soru 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span id="q3">What if I can't complete a quest?</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner" id="a3">If a quest feels too difficult or fails, simply close the verification window and choose a different easy offer from the list.</div>
+                </div>
+            </div>
+            <!-- Soru 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span id="q4">Why do I have to do a quest?</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner" id="a4">Quests prevent automated bot networks from exhausting our server inventory and ensure all daily codes go to real gamers.</div>
+                </div>
+            </div>
+            <!-- Soru 5 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span id="q5">Can I claim more than once?</span>
+                    <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner" id="a5">To remain fair to the community, each ip-address or gaming profile is strictly restricted to 1 successful claim per 24 hours.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORTA BLOK: REWARDS -->
     <div class="card main-card">
         <h2 id="mainTitle">Choose Your Reward</h2>
         <p class="subtitle" id="mainSub">Which reward would you like to transfer to your account today?</p>
         
         <div class="reward-grid">
-            <!-- ROBUX BUTONU (ORİJİNAL LOGO) -->
+            <!-- ROBUX BUTONU -->
             <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item robux-btn">
                 <div class="reward-icon-container">
                     <svg viewBox="0 0 100 100" width="50" height="50">
@@ -70,82 +147,12 @@
                 <div class="reward-desc" id="robuxDesc">Instant Delivery</div>
             </a>
             
-            <!-- NITRO BUTONU (ORİJİNAL NITRO KRİSTAL LOGOSU) -->
+            <!-- NITRO BUTONU -->
             <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item">
                 <div class="reward-icon-container">
-                    <svg viewBox="0 0 100 100" width="55" height="55">
-                        <polygon points="50,5 90,30 90,70 50,95 10,70 10,30" fill="#ff73fa" />
-                        <polygon points="50,18 78,38 78,62 50,82 22,62 22,38" fill="#252836" />
-                        <polygon points="50,30 68,43 50,70 32,43" fill="#ff73fa" />
-                    </svg>
-                </div>
-                <div class="reward-title">1 Month Nitro</div>
-                <div class="reward-desc" id="nitroDesc">Premium Membership</div>
-            </a>
-        </div>
-        <p id="footerText" style="font-size: 11px; color:#72767d;">* Daily stock limit is 1 per account.</p>
-    </div>
-
-    <!-- LIVE CHAT BLOCK -->
-    <div class="card side-card">
-        <div class="chat-header">
-            <h2 id="chatTitle">Live Chat</h2>
-            <div class="status">● <span id="activeCount">412</span> <span id="activeText">Active</span></div>
-        </div>
-        
-        <div class="chat-box" id="chatBox">
-            <div class="chat-msg"><span class="username">Gamer_X:</span><span class="msg-text">just claimed 800 Robux! Thanks.</span></div>
-            <div class="chat-msg"><span class="username user-nitro">Shadow99:</span><span class="msg-text">Finally a working Nitro, you are the best!</span></div>
-        </div>
-
-        <!-- SAHTE MESAJ YAZMA ALANI -->
-        <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="Send a message..." disabled="disabled" />
-            <button id="chatBtn" disabled="disabled">Send</button>
-        </div>
-    </div>
-</div>
-
-<script>
-    var trans = {
-        en: { title: "Choose Your Reward", sub: "Which reward would you like to claim today?", rx: "Instant Delivery", nt: "Premium Membership", ft: "* Limit 1 per account daily.", ct: "Live Chat", ac: "Active", rMsg: "just claimed 800 Robux! Thanks.", nMsg: "Finally a working Nitro, you are the best!", inp: "Verification required to chat..." },
-        tr: { title: "Ödülünü Seç", sub: "Bugün hangi hediyeyi hesabına aktarmak istersin?", rx: "Anında Teslimat", nt: "Premium Üyelik", ft: "* Günlük stok limiti hesap başına 1 adettir.", ct: "Canlı Sohbet", ac: "Aktif", rMsg: "800 Robux aldı! Teşekkürler.", nMsg: "Sonunda çalışan bir Nitro buldum, adamsınız!", inp: "Sohbet için doğrulama gerekli..." }
-    };
-
-    var uLang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase(); 
-    if (uLang !== 'tr') uLang = 'en';
-    var current = trans[uLang];
-
-    document.getElementById('mainTitle').innerText = current.title;
-    document.getElementById('mainSub').innerText = current.sub;
-    document.getElementById('robuxDesc').innerText = current.rx;
-    document.getElementById('nitroDesc').innerText = current.nt;
-    document.getElementById('footerText').innerText = current.ft;
-    document.getElementById('chatTitle').innerText = current.ct;
-    document.getElementById('activeText').innerText = current.ac;
-    document.getElementById('chatInput').placeholder = current.inp;
-
-    var userNames = ['Julia_UwU', 'NitroKing', 'Robloxian', 'Alpha_TR', 'Alex2026', 'Meltem_07', 'Leo_Gamer', 'Hyper_X', 'Vortex', 'Slayer'];
-    var cBox = document.getElementById('chatBox');
-
-    setInterval(function() {
-        if(cBox) {
-            var name = userNames[Math.floor(Math.random() * userNames.length)];
-            var isR = Math.random() > 0.5;
-            var txt = isR ? current.rMsg : current.nMsg;
-            var cls = isR ? '' : 'user-nitro';
-            
-            var el = document.createElement('div');
-            el.className = 'chat-msg';
-            el.innerHTML = '<span class="username ' + cls + '">' + name + ':</span><span class="msg-text">' + txt + '</span>';
-            cBox.appendChild(el);
-            
-            if (cBox.children.length > 5) { cBox.removeChild(cBox.children); }
-        }
-        // Aktif kişi sayısını dalgalandırır
-        var countEl = document.getElementById('activeCount');
-        if(countEl) { countEl.innerText = Math.floor(Math.random() * (450 - 380) + 380); }
-    }, 3000);
-</script>
-</body>
-</html>
+                    <svg viewBox="0 0 100 60" width="65" height="45">
+                        <path d="M10,15 L35,25 L25,35 Z" fill="#ff73fa" />
+                        <path d="M5,25 L30,30 L20,40 Z" fill="#ff73fa" opacity="0.7" />
+                        <path d="M90,15 L65,25 L75,35 Z" fill="#ff73fa" />
+                        <path d="M95,25 L70,30 L80,40 Z" fill="#ff73fa" opacity="0.7" />
+                        <polygon points="50,5 68,23 68,47 50,65 32,47 32,23" fill="#ff73fa" />
