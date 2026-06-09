@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claim Reward</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
         body {
             background: #111319;
             min-height: 100vh;
@@ -15,118 +15,107 @@
             color: #fff;
             padding: 20px;
         }
-        .container { display: flex; gap: 20px; max-width: 1100px; width: 100%; flex-wrap: wrap; justify-content: center; }
-        .card { background: #1c1e27; border-radius: 14px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.03); }
+        .container { display: flex; gap: 20px; max-width: 900px; width: 100%; flex-wrap: wrap; justify-content: center; }
+        .card { background: #1c1e27; border-radius: 14px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.03); }
         .side-card { flex: 1; min-width: 290px; max-width: 320px; }
         .main-card { flex: 2; min-width: 320px; max-width: 460px; text-align: center; }
-        h2 { font-size: 20px; margin-bottom: 15px; font-weight: 700; letter-spacing: -0.5px; }
+        h2 { font-size: 20px; margin-bottom: 15px; font-weight: 700; }
         .subtitle { color: #8e9297; font-size: 13px; margin-bottom: 25px; }
         .reward-grid { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
-        .reward-item { background: #252836; border-radius: 10px; padding: 20px; flex: 1; cursor: pointer; border: 2px solid transparent; text-decoration: none; color: #fff; display: block; transition: transform 0.2s, border-color 0.2s; }
+        .reward-item { background: #252836; border-radius: 10px; padding: 25px; flex: 1; cursor: pointer; border: 2px solid transparent; text-decoration: none; color: #fff; display: block; transition: transform 0.2s, border-color 0.2s; }
         .reward-item:hover { transform: translateY(-3px); border-color: #5865F2; }
-        
-        /* Kırılmaz Base64 Vektörel Görseller */
-        .reward-icon { width: 50px; height: 50px; margin: 0 auto 12px auto; display: block; background-size: contain; background-repeat: no-repeat; background-position: center; }
-        .icon-robux { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 50 50"><polygon points="25,5 45,15 45,35 25,45 5,35 5,15" fill="%2300b0ff"/><polygon points="25,13 37,20 37,30 25,37 13,30 13,20" fill="%23111319"/></svg>'); }
-        .icon-nitro { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 50 50"><path d="M5,25 C5,10 15,5 25,5 C35,5 45,10 45,25 C45,40 35,45 25,45 C15,45 5,40 5,25 Z" fill="%235865F2"/><path d="M15,28 L28,12 L23,22 L35,22 L22,38 L27,28 Z" fill="%23fff"/></svg>'); }
-        
-        .reward-title { font-weight: bold; font-size: 15px; margin-bottom: 5px; }
+        .reward-icon { font-size: 45px; margin-bottom: 12px; display: block; text-align: center; }
+        .reward-title { font-weight: bold; font-size: 16px; margin-bottom: 5px; }
         .reward-desc { font-size: 11px; color: #b9bbbe; }
-        
-        /* Canlı Sohbet Alanı */
         .chat-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2f3241; padding-bottom: 10px; margin-bottom: 15px; }
         .status { font-size: 12px; color: #23a55a; font-weight: bold; }
         .chat-box { height: 230px; overflow: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 12px; text-align: left; }
-        .chat-msg { animation: chatFade 0.3s ease-out forwards; border-bottom: 1px solid rgba(255,255,255,0.02); padding-bottom: 6px; }
+        .chat-msg { border-bottom: 1px solid rgba(255,255,255,0.02); padding-bottom: 6px; }
         .username { font-weight: bold; color: #00b0ff; }
         .user-nitro { color: #5865F2; }
         .msg-text { color: #dcddde; margin-left: 5px; }
-        
-        /* SSS Alanı */
-        .faq-item { margin-bottom: 12px; background: #232634; padding: 12px; border-radius: 8px; text-align: left; }
-        .faq-q { font-weight: bold; font-size: 12px; margin-bottom: 5px; color: #fff; }
-        .faq-a { font-size: 11px; color: #a3a6aa; line-height: 1.4; }
-        
-        @keyframes chatFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @media(max-width: 768px) { .container { flex-direction: column; align-items: center; } .side-card { max-width: 100%; width: 100%; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- HELP BOX -->
-    <div class="card side-card">
-        <h2 id="faqTitle">Help & Support</h2>
-        <div class="faq-item">
-            <div class="faq-q" id="q1">⭐ How to claim rewards?</div>
-            <div class="faq-a" id="a1">Select a reward, enter your username, and complete the sponsor verification task in the final step.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q" id="q2">⚡ When will it arrive?</div>
-            <div class="faq-a" id="a2">Once verified, your gift code will instantly appear on your screen within 5-10 minutes.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-q" id="q3">🔒 Is it safe?</div>
-            <div class="faq-a" id="a3">Yes, it is a completely password-free system integrated with official secure API infrastructure.</div>
-        </div>
-    </div>
-
-    <!-- MAIN REWARDS -->
+    <!-- REWARDS BLOCK -->
     <div class="card main-card">
         <h2 id="mainTitle">Choose Your Reward</h2>
         <p class="subtitle" id="mainSub">Which reward would you like to transfer to your account today?</p>
         
         <div class="reward-grid">
             <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item">
-                <div class="reward-icon icon-robux"></div>
+                <span class="reward-icon">💎</span>
                 <div class="reward-title">800 Robux</div>
                 <div class="reward-desc" id="robuxDesc">Instant Delivery</div>
             </a>
             
             <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item">
-                <div class="reward-icon icon-nitro"></div>
+                <span class="reward-icon">🔥</span>
                 <div class="reward-title">1 Month Nitro</div>
                 <div class="reward-desc" id="nitroDesc">Premium Membership</div>
             </a>
         </div>
-        <p style="font-size: 11px; color:#72767d;" id="footerText">* Daily stock limit is 1 per account.</p>
+        <p id="footerText" style="font-size: 11px; color:#72767d;">* Daily stock limit is 1 per account.</p>
     </div>
 
-    <!-- LIVE CHAT -->
+    <!-- LIVE CHAT BLOCK -->
     <div class="card side-card">
         <div class="chat-header">
             <h2 id="chatTitle">Live Chat</h2>
             <div class="status">● <span id="activeCount">412</span> <span id="activeText">Active</span></div>
         </div>
         <div class="chat-box" id="chatBox">
-            <!-- İlk başlangıç mesajları -->
+            <!-- İlk mesajlar doğrudan yüklensin -->
+            <div class="chat-msg"><span class="username">Gamer_X:</span><span class="msg-text">just claimed 800 Robux! Thanks.</span></div>
+            <div class="chat-msg"><span class="username user-nitro">Shadow99:</span><span class="msg-text">Finally a working Nitro, you are the best!</span></div>
         </div>
     </div>
 </div>
 
 <script>
-    window.onload = function() {
-        // Global Dil Paketleri
-        var languages = {
-            en: {
-                faqTitle: "Help & Support", q1: "⭐ How to claim rewards?", a1: "Select a reward, enter your username, and complete the sponsor task.", q2: "⚡ When will it arrive?", a2: "Once verified, your code will appear on screen within 5-10 minutes.", q3: "🔒 Is it safe?", a3: "Yes, it is a secure, password-free system.",
-                mainTitle: "Choose Your Reward", mainSub: "Which reward would you like to claim today?", robuxDesc: "Instant Delivery", nitroDesc: "Premium Membership", footerText: "* Limit 1 per account daily.", chatTitle: "Live Chat", activeText: "Active",
-                chatRobux: "just claimed 800 Robux! Thanks.", chatNitro: "Finally a working Nitro, you are the best!"
-            },
-            tr: {
-                faqTitle: "Yardım & Destek", q1: "⭐ Ödülleri nasıl alırım?", a1: "Bir ödül seçin, kullanıcı adınızı girin ve son adımdaki görevi tamamlayın.", q2: "⚡ Ne zaman gelir?", a2: "Doğrulama tamamlandıktan sonra kodunuz 5-10 dakika içinde ekranda belirir.", q3: "🔒 Güvenli mi?", a3: "Evet, tamamen şifresiz ve güvenli bir sistemdir.",
-                mainTitle: "Ödülünü Seç", mainSub: "Bugün hangi hediyeyi hesabına aktarmak istersin?", robuxDesc: "Anında Teslimat", nitroDesc: "Premium Üyelik", footerText: "* Günlük stok limiti hesap başına 1 adettir.", chatTitle: "Canlı Sohbet", activeText: "Aktif",
-                chatRobux: "800 Robux aldı! Teşekkürler.", chatNitro: "Sonunda çalışan bir Nitro buldum, adamsınız!"
-            },
-            de: {
-                faqTitle: "Hilfe & Support", q1: "⭐ Wie erhalte ich Prämien?", a1: "Wählen Sie eine Belohnung, geben Sie Ihren Benutzernamen ein und schließen Sie den Task ab.", q2: "⚡ Wann kommt es an?", a2: "Nach der Verifizierung erscheint Ihr Code innerhalb von 5-10 Minuten.", q3: "🔒 Ist es sicher?", a3: "Ja, es ist ein passwortfreies System mit sicherer API-Infrastruktur.",
-                mainTitle: "Wähle deine Belohnung", mainSub: "Welche Belohnung möchtest du heute erhalten?", robuxDesc: "Sofortige Lieferung", nitroDesc: "Premium-Mitgliedschaft", footerText: "* Das Limit beträgt 1 pro Konto am Tag.", chatTitle: "Live-Chat", activeText: "Aktiv",
-                chatRobux: "hat gerade 800 Robux erhalten! Danke.", chatNitro: "Endlich ein funktionierendes Nitro, danke Leute!"
-            },
-            fr: {
-                faqTitle: "Aide & Support", q1: "⭐ Comment réclamer?", a1: "Sélectionnez une récompense, entrez votre nom d'utilisateur et terminez la tâche.", q2: "⚡ Quand arrivera-t-il?", a2: "Une fois la vérification réussie, votre code apparaîtra d'ici 5 à 10 minutes.", q3: "🔒 Est-ce sûr?", a3: "Oui, c'est un système sans mot de passe intégré à une API sécurisée.",
-                mainTitle: "Choisis ta récompense", mainSub: "Quelle récompense aimeriez-vous réclamer aujourd'hui?", robuxDesc: "Livraison Instantanée", nitroDesc: "Abonnement Premium", footerText: "* La limite quotidienne est de 1 par compte.", chatTitle: "Chat en direct", activeText: "Actif",
-                chatRobux: "vient de recevoir 800 Robux! Merci.", chatNitro: "Enfin un Nitro qui fonctionne, merci!"
-            },
-            es: {
-                faqTitle: "Ayuda & Soporte", q1: "⭐ ¿Cómo reclamo premios?", a1: "Selecciona una recompensa, ingresa tu usuario y completa la tarea del sponsor.", q2: "⚡ ¿Cuándo llegará?", a2: "Una vez verificado, tu código aparecerá en pantalla en 5-10 minutos.", q3: "🔒 ¿Es seguro?", a3: "Sí, es un sistema sin contraseña totalmente seguro.",
+    // Global Diller (Vercel Korumasız)
+    var trans = {
+        en: { title: "Choose Your Reward", sub: "Which reward would you like to claim today?", rx: "Instant Delivery", nt: "Premium Membership", ft: "* Limit 1 per account daily.", ct: "Live Chat", ac: "Active", rMsg: "just claimed 800 Robux! Thanks.", nMsg: "Finally a working Nitro, you are the best!" },
+        tr: { title: "Ödülünü Seç", sub: "Bugün hangi hediyeyi hesabına aktarmak istersin?", rx: "Anında Teslimat", nt: "Premium Üyelik", ft: "* Günlük stok limiti hesap başına 1 adettir.", ct: "Canlı Sohbet", ac: "Aktif", rMsg: "800 Robux aldı! Teşekkürler.", nMsg: "Sonunda çalışan bir Nitro buldum, adamsınız!" }
+    };
+
+    var uLang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase(); 
+    if (uLang !== 'tr') uLang = 'en'; // Türkçe harici her yere İngilizce göster
+    var current = trans[uLang];
+
+    document.getElementById('mainTitle').innerText = current.title;
+    document.getElementById('mainSub').innerText = current.subtitle || current.sub;
+    document.getElementById('robuxDesc').innerText = current.rx;
+    document.getElementById('nitroDesc').innerText = current.nt;
+    document.getElementById('footerText').innerText = current.ft;
+    document.getElementById('chatTitle').innerText = current.ct;
+    document.getElementById('activeText').innerText = current.ac;
+
+    // Engellenemeyen Basit Sohbet ve Canlı Sayı Akışı
+    var userNames = ['Julia_UwU', 'NitroKing', 'Robloxian', 'Alpha_TR', 'Alex2026', 'Meltem_07', 'Leo_Gamer', 'Hyper_X', 'Vortex', 'Slayer'];
+    var cBox = document.getElementById('chatBox');
+
+    setInterval(function() {
+        if(cBox) {
+            var name = userNames[Math.floor(Math.random() * userNames.length)];
+            var isR = Math.random() > 0.5;
+            var txt = isR ? current.rMsg : current.nMsg;
+            var cls = isR ? '' : 'user-nitro';
+            
+            var el = document.createElement('div');
+            el.className = 'chat-msg';
+            el.innerHTML = '<span class="username ' + cls + '">' + name + ':</span><span class="msg-text">' + txt + '</span>';
+            cBox.appendChild(el);
+            
+            if (cBox.children.length > 5) { cBox.removeChild(cBox.children[0]); }
+        }
+        // Aktif kişi sayısını sürekli dinamik olarak değiştirir
+        var countEl = document.getElementById('activeCount');
+        if(countEl) { countEl.innerText = Math.floor(Math.random() * (440 - 390) + 390); }
+    }, 3000);
+</script>
+</body>
+</html>
