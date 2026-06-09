@@ -23,7 +23,8 @@
         .subtitle { color: #8e9297; font-size: 13px; margin-bottom: 25px; }
         .reward-grid { display: flex; gap: 15px; justify-content: center; margin-bottom: 20px; }
         .reward-item { background: #252836; border-radius: 10px; padding: 25px; flex: 1; cursor: pointer; border: 2px solid transparent; text-decoration: none; color: #fff; display: block; transition: transform 0.2s, border-color 0.2s; }
-        .reward-item:hover { transform: translateY(-3px); border-color: #5865F2; }
+        .reward-item:hover { transform: translateY(-3px); border-color: #ff73fa; }
+        .reward-item.robux-btn:hover { border-color: #00b0ff; }
         
         /* Orijinal Vektör Logolar */
         .reward-icon-container { width: 55px; height: 55px; margin: 0 auto 12px auto; display: flex; align-items: center; justify-content: center; }
@@ -37,13 +38,13 @@
         .chat-box { height: 210px; overflow: hidden; display: flex; flex-direction: column; gap: 12px; font-size: 12px; text-align: left; flex-grow: 1; }
         .chat-msg { border-bottom: 1px solid rgba(255,255,255,0.02); padding-bottom: 6px; }
         .username { font-weight: bold; color: #00b0ff; }
-        .user-nitro { color: #5865F2; }
+        .user-nitro { color: #ff73fa; }
         .msg-text { color: #dcddde; margin-left: 5px; }
         
         /* Sahte Yazma Alanı */
         .chat-input-area { display: flex; gap: 8px; margin-top: 15px; border-top: 1px solid #2f3241; padding-top: 15px; }
         .chat-input-area input { flex: 1; background: #252836; border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; padding: 8px 12px; color: #fff; font-size: 12px; cursor: not-allowed; }
-        .chat-input-area button { background: #5865F2; border: none; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: not-allowed; opacity: 0.6; }
+        .chat-input-area button { background: #ff73fa; border: none; color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: not-allowed; opacity: 0.6; }
         
         @media(max-width: 768px) { .container { flex-direction: column; align-items: center; } .side-card { max-width: 100%; width: 100%; } }
     </style>
@@ -58,7 +59,7 @@
         
         <div class="reward-grid">
             <!-- ROBUX BUTONU (ORİJİNAL LOGO) -->
-            <a href="BURAYA_ROBUX_OGADS_LINKINI_YAPISTIR" class="reward-item">
+            <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item robux-btn">
                 <div class="reward-icon-container">
                     <svg viewBox="0 0 100 100" width="50" height="50">
                         <rect x="25" y="25" width="50" height="50" transform="rotate(15 50 50)" fill="#00b0ff" />
@@ -69,11 +70,13 @@
                 <div class="reward-desc" id="robuxDesc">Instant Delivery</div>
             </a>
             
-            <!-- NITRO BUTONU (ORİJİNAL LOGO) -->
-            <a href="BURAYA_NITRO_OGADS_LINKINI_YAPISTIR" class="reward-item">
+            <!-- NITRO BUTONU (ORİJİNAL NITRO KRİSTAL LOGOSU) -->
+            <a href="https://appsave.online/cl/i/1x3g7k" class="reward-item">
                 <div class="reward-icon-container">
-                    <svg viewBox="0 0 127.14 96.36" width="52" height="42">
-                        <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.95,54.65,1,77.53a105.73,105.73,0,0,0,32,16.29,79,79,0,0,0,6.73-11A68.6,68.6,0,0,1,28.8,77.53c.95-.7,1.92-1.44,2.84-2.2a74.14,74.14,0,0,0,71,0c.92.76,1.89,1.5,2.84,2.2a68.88,68.88,0,0,1-10.94,5.27,78.73,78.73,0,0,0,6.73,11,105.41,105.41,0,0,0,32-16.29C129.7,48.56,123.32,25.9,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z" fill="#5865F2"/>
+                    <svg viewBox="0 0 100 100" width="55" height="55">
+                        <polygon points="50,5 90,30 90,70 50,95 10,70 10,30" fill="#ff73fa" />
+                        <polygon points="50,18 78,38 78,62 50,82 22,62 22,38" fill="#252836" />
+                        <polygon points="50,30 68,43 50,70 32,43" fill="#ff73fa" />
                     </svg>
                 </div>
                 <div class="reward-title">1 Month Nitro</div>
@@ -95,7 +98,7 @@
             <div class="chat-msg"><span class="username user-nitro">Shadow99:</span><span class="msg-text">Finally a working Nitro, you are the best!</span></div>
         </div>
 
-        <!-- YENİ: SAHTE MESAJ YAZMA ALANI -->
+        <!-- SAHTE MESAJ YAZMA ALANI -->
         <div class="chat-input-area">
             <input type="text" id="chatInput" placeholder="Send a message..." disabled="disabled" />
             <button id="chatBtn" disabled="disabled">Send</button>
@@ -137,11 +140,11 @@
             el.innerHTML = '<span class="username ' + cls + '">' + name + ':</span><span class="msg-text">' + txt + '</span>';
             cBox.appendChild(el);
             
-            if (cBox.children.length > 5) { cBox.removeChild(cBox.children[0]); }
+            if (cBox.children.length > 5) { cBox.removeChild(cBox.children); }
         }
         // Aktif kişi sayısını dalgalandırır
         var countEl = document.getElementById('activeCount');
-        if(countEl) { countEl.innerText = Math.floor(Math.random() * (450 - 390) + 390); }
+        if(countEl) { countEl.innerText = Math.floor(Math.random() * (450 - 380) + 380); }
     }, 3000);
 </script>
 </body>
